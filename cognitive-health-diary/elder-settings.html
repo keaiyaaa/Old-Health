@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+
+<html class="w-full h-full overflow-hidden" lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>设置</title>
+<script src="https://modao.cc/agent-py/static/source/js/tailwindcss.js"></script>
+<script src="https://modao.cc/agent-py/static/source/js/iconify-icon.min.js"></script>
+<style>
+  html, body { font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; -webkit-tap-highlight-color: transparent; }
+  .no-sb { scrollbar-width: none; -ms-overflow-style: none; }
+  .no-sb::-webkit-scrollbar { display: none; width: 0; height: 0; }
+  .fs-big .fs-text { font-size: 20px; }
+  .fs-xbig .fs-text { font-size: 23px; }
+</style>
+</head>
+<body class="w-full h-full m-0 overflow-hidden flex items-center justify-center bg-[#DCE0E5]">
+<div class="relative w-full h-full max-w-[393px] max-h-[852px] bg-[#FBF8F3] overflow-hidden flex flex-col" id="page">
+<header class="shrink-0 flex items-center gap-1 px-3 pt-4 pb-2">
+<a class="w-12 h-12 flex items-center justify-center rounded-full text-[#2C3742] active:bg-[#F0EBE3]" href="elder-record.html">
+<iconify-icon class="text-[26px]" icon="solar:alt-arrow-left-linear"></iconify-icon>
+</a>
+<p class="text-[21px] font-semibold text-[#2C3742]">设置</p>
+</header>
+<div class="flex-1 min-h-0 overflow-y-auto no-sb px-4 pb-6">
+<div class="rounded-3xl bg-white border border-[#EDE7DD] p-4">
+<p class="fs-text text-[19px] font-semibold text-[#2C3742]">字的大小</p>
+<p class="mt-1 text-[15px] text-[#8A9099]">看不清就选大一点，全站都会跟着变</p>
+<div class="mt-3 grid grid-cols-3 gap-2">
+<button class="h-[52px] rounded-2xl bg-[#F1F3F6] text-[18px] font-medium text-[#5B6470]" id="fs1" onclick="setFont('std')">标准</button>
+<button class="h-[52px] rounded-2xl bg-[#F1F3F6] text-[18px] font-medium text-[#5B6470]" id="fs2" onclick="setFont('big')">大</button>
+<button class="h-[52px] rounded-2xl bg-[#F1F3F6] text-[18px] font-medium text-[#5B6470]" id="fs3" onclick="setFont('xbig')">特大</button>
+</div>
+<div class="mt-3 rounded-2xl bg-[#F7F5F0] px-4 py-3">
+<p class="fs-text text-[18px] leading-relaxed text-[#2C3742]">预览：今天想聊点什么？说几句就好。</p>
+</div>
+</div>
+<div class="mt-3 rounded-3xl bg-white border border-[#EDE7DD] p-4">
+<div class="flex items-center gap-3">
+<span class="w-11 h-11 rounded-2xl bg-[#E6F4EF] flex items-center justify-center shrink-0">
+<iconify-icon class="text-[22px] text-[#0F8A7E]" icon="solar:volume-loud-linear"></iconify-icon>
+</span>
+<div class="flex-1">
+<p class="fs-text text-[18px] font-medium text-[#2C3742]">语音提示</p>
+<p class="mt-0.5 text-[15px] text-[#8A9099]">按按钮和录完的时候，会念给你听</p>
+</div>
+<button class="w-[62px] h-[36px] rounded-full bg-[#0F8A7E] p-[3px] flex justify-end shrink-0" id="ttsSwitch" onclick="toggleSwitch('tts')">
+<span class="w-[30px] h-[30px] rounded-full bg-white shadow" id="ttsKnob"></span>
+</button>
+</div>
+</div>
+<div class="mt-3 rounded-3xl bg-white border border-[#EDE7DD] p-4">
+<div class="flex items-center gap-3">
+<span class="w-11 h-11 rounded-2xl bg-[#E6F4EF] flex items-center justify-center shrink-0">
+<iconify-icon class="text-[22px] text-[#0F8A7E]" icon="solar:users-group-rounded-linear"></iconify-icon>
+</span>
+<div class="flex-1">
+<p class="fs-text text-[18px] font-medium text-[#2C3742]">家里的人</p>
+<p class="mt-0.5 text-[15px] text-[#8A9099]">已绑定：女儿 小敏</p>
+</div>
+</div>
+<button class="mt-3 h-[54px] w-full rounded-2xl bg-[#EDF4F2] text-[18px] font-medium text-[#0B6B62] active:bg-[#E1EDEA]" onclick="openBind()">
+          再绑一位家里人
+        </button>
+</div>
+<div class="mt-3 rounded-3xl bg-white border border-[#EDE7DD] p-4">
+<div class="flex items-center gap-3">
+<span class="w-11 h-11 rounded-2xl bg-[#F1F3F6] flex items-center justify-center shrink-0">
+<iconify-icon class="text-[22px] text-[#6B7280]" icon="solar:refresh-circle-linear"></iconify-icon>
+</span>
+<div class="flex-1">
+<p class="fs-text text-[18px] font-medium text-[#2C3742]">换到家属这边</p>
+<p class="mt-0.5 text-[15px] text-[#8A9099]">去看家里人的记录</p>
+</div>
+</div>
+<a class="mt-3 h-[54px] w-full rounded-2xl bg-[#EDF4F2] text-[18px] font-medium text-[#0B6B62] flex items-center justify-center active:bg-[#E1EDEA]" href="family-overview.html">
+          切换到家属端
+        </a>
+</div>
+<div class="mt-3 rounded-3xl bg-white border border-[#EDE7DD] p-4">
+<p class="fs-text text-[18px] font-medium text-[#2C3742]">关于</p>
+<div class="mt-3 space-y-2">
+<a class="h-[52px] rounded-2xl bg-[#F7F5F0] px-4 flex items-center justify-between text-[17px] text-[#2C3742] active:bg-[#F0EBE3]" href="onboarding-intro.html">
+<span class="fs-text">这个 App 能做什么、不能做什么</span>
+<iconify-icon class="text-[20px] text-[#A8B0B8]" icon="solar:alt-arrow-right-linear"></iconify-icon>
+</a>
+<a class="h-[52px] rounded-2xl bg-[#F7F5F0] px-4 flex items-center justify-between text-[17px] text-[#2C3742] active:bg-[#F0EBE3]" href="onboarding-consent.html">
+<span class="fs-text">我的授权和录音保存时间</span>
+<iconify-icon class="text-[20px] text-[#A8B0B8]" icon="solar:alt-arrow-right-linear"></iconify-icon>
+</a>
+</div>
+</div>
+<a class="mt-3 h-[58px] w-full rounded-3xl bg-white border border-[#EDE7DD] text-[19px] font-medium text-[#5B6470] flex items-center justify-center active:bg-[#F7F5F0]" href="home.html">
+        退出
+      </a>
+<p class="mt-5 text-center text-[15px] leading-relaxed text-[#A8B0B8]">
+        本工具不提供诊断，也不能代替医生
+      </p>
+</div>
+<div class="hidden absolute inset-0 z-40" id="bindSheet">
+<div class="absolute inset-0 bg-[#2C3742]/45" onclick="closeBind()"></div>
+<div class="absolute bottom-0 left-0 right-0 rounded-t-3xl bg-white p-5 pb-8">
+<div class="mx-auto mb-4 h-1.5 w-12 rounded-full bg-[#E2E6EB]"></div>
+<p class="text-[21px] font-semibold text-[#2C3742]">让家里人扫一下</p>
+<p class="mt-2 text-[17px] leading-relaxed text-[#5B6470]">打开他们手机上的这个 App，扫下面这个码，就能看到你的记录。</p>
+<div class="mt-4 mx-auto w-[190px] h-[190px] rounded-3xl bg-[#F7F5F0] border border-[#EDE7DD] flex items-center justify-center">
+<iconify-icon class="text-[130px] text-[#2C3742]" icon="solar:qr-code-linear"></iconify-icon>
+</div>
+<p class="mt-3 text-center text-[16px] text-[#8A9099]">这个码只给家里人看，别发到群里</p>
+<button class="mt-5 h-[58px] w-full rounded-2xl bg-[#F1F3F6] text-[20px] font-medium text-[#2C3742]" onclick="closeBind()">知道了</button>
+</div>
+</div>
+</div>
+<script>
+    function setFont(level) {
+      var page = document.getElementById('page');
+      page.classList.remove('fs-big', 'fs-xbig');
+      if (level === 'big') { page.classList.add('fs-big'); }
+      if (level === 'xbig') { page.classList.add('fs-xbig'); }
+      var on = 'h-[52px] rounded-2xl bg-[#0F8A7E] text-[18px] font-medium text-white';
+      var off = 'h-[52px] rounded-2xl bg-[#F1F3F6] text-[18px] font-medium text-[#5B6470]';
+      document.getElementById('fs1').className = level === 'std' ? on : off;
+      document.getElementById('fs2').className = level === 'big' ? on : off;
+      document.getElementById('fs3').className = level === 'xbig' ? on : off;
+    }
+
+    var ttsOn = true;
+    function toggleSwitch(key) {
+      if (key !== 'tts') { return; }
+      ttsOn = !ttsOn;
+      var box = document.getElementById('ttsSwitch');
+      box.className = ttsOn
+        ? 'w-[62px] h-[36px] rounded-full bg-[#0F8A7E] p-[3px] flex justify-end shrink-0'
+        : 'w-[62px] h-[36px] rounded-full bg-[#D8DDE4] p-[3px] flex justify-start shrink-0';
+    }
+
+    function openBind() { document.getElementById('bindSheet').classList.remove('hidden'); }
+    function closeBind() { document.getElementById('bindSheet').classList.add('hidden'); }
+
+    setFont('big');
+  </script>
+</body>
+</html>

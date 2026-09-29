@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 与 ui/theme/Color.kt 保持一致。这里只放 XML 主题需要的颜色。 -->
+    <color name="bg_page">#F5F8F5</color>
+    <color name="brand_primary">#17845A</color>
+    <color name="ic_launcher_background">#FFFFFF</color>
+</resources>

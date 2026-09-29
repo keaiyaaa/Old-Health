@@ -1,0 +1,81 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: cogni
+      POSTGRES_PASSWORD: cogni
+      POSTGRES_DB: cogni
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U cogni"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  api:
+    build: .
+    command: >
+      sh -c "alembic upgrade head &&
+             uvicorn app.main:app --host 0.0.0.0 --port 8000"
+    environment: &app_env
+      APP_environment: prod
+      APP_database_url: postgresql+psycopg://cogni:cogni@postgres:5432/cogni
+      APP_redis_url: redis://redis:6379/0
+      APP_jwt_secret: ${APP_JWT_SECRET:?请在 .env 设置}
+      APP_aes_key_b64: ${APP_AES_KEY_B64:?请在 .env 设置}
+      APP_hmac_key_b64: ${APP_HMAC_KEY_B64:?请在 .env 设置}
+      APP_storage_backend: ${APP_STORAGE_BACKEND:-local}
+      APP_s3_endpoint_url: ${APP_S3_ENDPOINT_URL:-}
+      APP_s3_bucket: ${APP_S3_BUCKET:-cogni-audio}
+      APP_s3_access_key: ${APP_S3_ACCESS_KEY:-}
+      APP_s3_secret_key: ${APP_S3_SECRET_KEY:-}
+      APP_asr_provider: ${APP_ASR_PROVIDER:-mock}
+      APP_asr_http_url: ${APP_ASR_HTTP_URL:-}
+      APP_asr_http_key: ${APP_ASR_HTTP_KEY:-}
+      APP_research_mode_enabled: ${APP_RESEARCH_MODE_ENABLED:-false}
+    ports:
+      - "8000:8000"
+    volumes:
+      - storage:/app/var/storage
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  worker:
+    build: .
+    command: celery -A app.worker.celery_app.celery_app worker -Q analysis,cleanup,notify -l info
+    environment: *app_env
+    volumes:
+      - storage:/app/var/storage
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  beat:
+    build: .
+    command: celery -A app.worker.celery_app.celery_app beat -l info
+    environment: *app_env
+    depends_on:
+      redis:
+        condition: service_healthy
+
+volumes:
+  pgdata:
+  storage:

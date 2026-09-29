@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+
+<html class="w-full h-full overflow-hidden" lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>趋势详情 · 家属端</title>
+<script src="https://modao.cc/agent-py/static/source/js/tailwindcss.js"></script>
+<script src="https://modao.cc/agent-py/static/source/js/iconify-icon.min.js"></script>
+<script src="https://modao.cc/agent-py/static/source/js/echarts.min.js"></script>
+<style>
+  html, body { font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; -webkit-tap-highlight-color: transparent; }
+  .no-sb { scrollbar-width: none; -ms-overflow-style: none; }
+  .no-sb::-webkit-scrollbar { display: none; width: 0; height: 0; }
+</style>
+</head>
+<body class="w-full h-full m-0 overflow-hidden flex items-center justify-center bg-[#DCE0E5]">
+<div class="relative w-full h-full max-w-[393px] max-h-[852px] bg-[#F4F5F7] overflow-hidden flex flex-col">
+<header class="shrink-0 flex items-center gap-1 px-3 pt-4 pb-2">
+<a class="w-11 h-11 flex items-center justify-center rounded-full text-[#4B5563] active:bg-[#E7E9EE]" href="family-overview.html">
+<iconify-icon class="text-[24px]" icon="solar:alt-arrow-left-linear"></iconify-icon>
+</a>
+<h1 class="flex-1 text-[17px] font-semibold text-[#1F2937]">趋势详情</h1>
+<a class="w-11 h-11 flex items-center justify-center rounded-full text-[#4B5563] active:bg-[#E7E9EE]" href="family-records.html">
+<iconify-icon class="text-[22px]" icon="solar:list-check-linear"></iconify-icon>
+</a>
+<a class="w-11 h-11 flex items-center justify-center rounded-full text-[#4B5563] active:bg-[#E7E9EE]" href="family-privacy.html">
+<iconify-icon class="text-[22px]" icon="solar:shield-check-linear"></iconify-icon>
+</a>
+</header>
+<div class="flex-1 min-h-0 overflow-y-auto no-sb px-4 pb-4">
+<div class="grid grid-cols-4 gap-1.5 rounded-2xl bg-white p-1.5">
+<button class="h-10 rounded-xl bg-[#0F8A7E] text-[12px] font-medium text-white" id="tab-speed" onclick="switchTab('speed')">说话速度</button>
+<button class="h-10 rounded-xl bg-transparent text-[12px] font-medium text-[#6B7280]" id="tab-fluency" onclick="switchTab('fluency')">说话流畅度</button>
+<button class="h-10 rounded-xl bg-transparent text-[12px] font-medium text-[#6B7280]" id="tab-vocab" onclick="switchTab('vocab')">用词丰富度</button>
+<button class="h-10 rounded-xl bg-transparent text-[12px] font-medium text-[#6B7280]" id="tab-coherence" onclick="switchTab('coherence')">说话的连贯性</button>
+</div>
+<div class="mt-3 rounded-2xl bg-white p-4 shadow-[0_2px_10px_rgba(31,41,55,0.05)]">
+<div class="flex items-center justify-between">
+<p class="text-[14px] font-semibold text-[#1F2937]">王秀兰 · 最近 6 周</p>
+<span class="rounded-full bg-[#FDF0E0] px-2.5 py-1 text-[11px] font-medium text-[#9A4B0A]" id="statusPill">比平时慢一些</span>
+</div>
+<div class="mt-2 w-full h-[196px]" id="trendChart"></div>
+<div class="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1.5 text-[11px] text-[#8A9099]">
+<span class="flex items-center gap-1"><span class="w-3.5 h-2.5 rounded-sm bg-[#D9EDE9]"></span>她自己平时的范围</span>
+<span class="flex items-center gap-1"><span class="w-4 border-t border-dashed border-[#B7BDC6]"></span>平时的平均</span>
+<span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-[#E07A1F]"></span>最近一次</span>
+<span class="flex items-center gap-1"><span class="w-px h-3 bg-[#C9CDD4]"></span>当天有事件</span>
+</div>
+<p class="mt-2 text-[11px] leading-relaxed text-[#A0A6AE]">这张图只给方向和状态，不给具体数字，也不跟别人比。</p>
+</div>
+<div class="mt-3 rounded-2xl bg-white overflow-hidden shadow-[0_2px_10px_rgba(31,41,55,0.05)]">
+<div class="flex">
+<div class="w-1 bg-[#E07A1F] shrink-0" id="toneBar"></div>
+<div class="flex-1 p-4">
+<p class="text-[14px] font-semibold text-[#8A4209]" id="toneTitle">比平时慢一些</p>
+<p class="mt-1.5 text-[13px] leading-relaxed text-[#4B5563]" id="toneDesc">最近两周，她说话的速度比她自己前几个月慢了一些，是慢慢变的，不是一天之内变的。</p>
+<div class="mt-3 rounded-xl bg-[#F7F8FA] p-3">
+<p class="text-[13px] font-medium text-[#3C4650]">也还有别的可能</p>
+<p class="mt-1.5 text-[13px] leading-relaxed text-[#6B7280]" id="toneExplain">感冒、嗓子不舒服、没睡好、心情不好、最近聊得少，都会让说话慢下来。先观察两周，把这几天的情况记下来。</p>
+</div>
+<div class="mt-3 flex gap-2">
+<a class="h-9 px-4 rounded-full bg-[#F4F5F7] text-[#3C4650] text-[13px] font-medium flex items-center" href="family-records.html">看原始记录</a>
+<button class="h-9 px-4 rounded-full bg-[#F4F5F7] text-[#3C4650] text-[13px] font-medium flex items-center" onclick="toast('已把「先观察两周」记进摘要备注')">记一句观察</button>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-3 rounded-2xl bg-white p-4 shadow-[0_2px_10px_rgba(31,41,55,0.05)]">
+<p class="text-[14px] font-semibold text-[#1F2937]">这段时间发生了什么</p>
+<p class="mt-1 text-[11px] text-[#A0A6AE]">点一下就能标到图上，之后看趋势会更容易看懂</p>
+<div class="mt-3 flex flex-wrap gap-2" id="eventChips"></div>
+<div class="mt-3 space-y-2" id="eventList"></div>
+</div>
+<div class="mt-3 rounded-2xl bg-white px-4 py-3 shadow-[0_2px_10px_rgba(31,41,55,0.05)]">
+<div class="flex items-center gap-3">
+<iconify-icon class="text-[19px] text-[#0F8A7E] shrink-0" icon="solar:database-linear"></iconify-icon>
+<div class="flex-1">
+<p class="text-[12px] text-[#4B5563]">这张图用了 <span class="font-semibold">8 条</span> 有效记录 · 数据够用</p>
+<div class="mt-1.5 h-1.5 rounded-full bg-[#EEF0F3] overflow-hidden">
+<div class="h-full w-[82%] rounded-full bg-[#0F8A7E]"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="shrink-0 border-t border-[#E3E6EA] bg-white">
+<button class="w-full px-4 py-2.5 flex items-center justify-center gap-1.5 text-[11px] text-[#8A9099]" onclick="toggleDisclaimer()">
+<iconify-icon class="text-[13px]" icon="solar:info-circle-linear"></iconify-icon>
+<span>本工具只做记录和变化提示，不提供诊断。</span>
+<span class="text-[#0F8A7E]" id="discMore">展开说明</span>
+</button>
+<div class="hidden px-4 pb-3" id="disclaimerFull">
+<p class="text-[11px] leading-relaxed text-[#6B7280]">
+          图上的阴影区代表她自己平时的范围，虚线是平时的平均，超出阴影区只说明「这段和以前不太一样」，不等于任何身体或大脑的状况。
+          说话方式受感冒、睡眠、情绪、环境变化、当天聊的话题影响，请结合实际情况看。有担心请到神经内科、记忆门诊或老年科当面咨询。
+        </p>
+</div>
+</div>
+<div class="pointer-events-none absolute left-1/2 bottom-[86px] z-50 hidden -translate-x-1/2 whitespace-nowrap rounded-full bg-[#1F2937]/90 px-4 py-2 text-[13px] text-white" id="toast"></div>
+</div>
+<script>
+    var DATES = ['8/15', '8/17', '8/19', '8/22', '8/24', '8/26', '8/28', '8/30', '9/02', '9/05', '9/08', '9/11', '9/14', '9/17', '9/20', '9/23', '9/26'];
+
+    var TABS = {
+      speed: {
+        name: '说话速度',
+        points: [0.1, -0.2, 0.3, -0.4, -0.8, -1.1, -1.4, -0.3, -0.1, -1.5, -1.8, -0.6, -1.3, -1.9, -1.6, -2.0, -2.2],
+        status: '比平时慢一些',
+        tone: 'warn',
+        desc: '最近两周，她说话的速度比她自己前几个月慢了一些，是慢慢变的，不是一天之内变的。',
+        explain: '感冒、嗓子不舒服、没睡好、心情不好、最近聊得少，都会让说话慢下来。先观察两周，把这几天的情况记下来，不用急着去医院。'
+      },
+      fluency: {
+        name: '说话流畅度',
+        points: [0.2, 0.1, -0.3, 0.4, -0.2, 0.5, 0.2, -0.1, 0.3, 0.2, -0.4, 0.1, 0.2, -0.3, 0.2, 0.1, -0.2],
+        status: '跟平时差不多',
+        tone: 'ok',
+        desc: '停顿、重复的情况，跟她自己前几个月基本一样，看不出明显的变化。',
+        explain: '偶尔卡壳、一时想不起词，很多人都会有，累了或者紧张的时候更明显。现在的记录看不出跟平时有什么不同。'
+      },
+      vocab: {
+        name: '用词丰富程度',
+        points: [0.3, 0.2, 0.1, -0.2, -0.4, -0.6, -0.9, -0.3, 0.0, -0.8, -1.1, -0.5, -0.9, -1.2, -1.0, -1.3, -1.5],
+        status: '比平时少一点',
+        tone: 'warn',
+        desc: '这段时间她说话用到的词比她自己以前少了一些，句子也短了。',
+        explain: '说话少也有别的解释：这几天没人陪着聊、身体不太舒服、或者只是那天的话题不熟。可以多打电话陪她说说话，过两周再看。'
+      },
+      coherence: {
+        name: '说话的连贯性',
+        points: [0.1, 0.2, -0.2, 0.3, 0.1, -0.3, 0.2, 0.4, 0.0, 0.2, -0.2, 0.3, 0.1, -0.1, 0.2, 0.1, -0.1],
+        status: '跟平时差不多',
+        tone: 'ok',
+        desc: '整段话前后接得顺不顺，跟她自己以前差不多。',
+        explain: '要是哪一天觉得她讲得有点乱，先看看是不是累了、刚睡醒、或者被打断了。偶尔一次说明不了什么。'
+      }
+    };
+
+    var EVENT_NAMES = ['感冒', '失眠', '情绪低落', '住院', '旅行', '家庭事件'];
+    var events = [
+      { idx: 6, name: '感冒' },
+      { idx: 12, name: '失眠' }
+    ];
+
+    var chart = null;
+    var current = 'speed';
+    var toastTimer = null;
+
+    function toast(msg) {
+      var t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.remove('hidden');
+      if (toastTimer) { clearTimeout(toastTimer); }
+      toastTimer = setTimeout(function () { t.classList.add('hidden'); }, 2000);
+    }
+
+    function toggleDisclaimer() {
+      var box = document.getElementById('disclaimerFull');
+      var more = document.getElementById('discMore');
+      if (box.classList.contains('hidden')) {
+        box.classList.remove('hidden');
+        more.textContent = '收起';
+      } else {
+        box.classList.add('hidden');
+        more.textContent = '展开说明';
+      }
+    }
+
+    function statusOf(key, v) {
+      var d = TABS[key];
+      if (d.tone === 'ok') { return '跟平时差不多'; }
+      if (v < -0.8) { return key === 'speed' ? '比平时慢一些' : '比平时少一点'; }
+      if (v > 0.8) { return key === 'speed' ? '比平时快一些' : '比平时多一些'; }
+      return '跟平时差不多';
+    }
+
+    function buildOption(key) {
+      var d = TABS[key];
+      var lines = [{ yAxis: 0 }];
+      events.forEach(function (e) {
+        lines.push({
+          xAxis: e.idx,
+          lineStyle: { color: '#C9CDD4', width: 1, type: 'solid' },
+          label: { show: true, formatter: e.name, position: 'insideEndTop', fontSize: 10, color: '#8A9099' }
+        });
+      });
+      return {
+        animationDuration: 500,
+        grid: { left: 12, right: 16, top: 22, bottom: 24 },
+        tooltip: {
+          trigger: 'axis',
+          backgroundColor: 'rgba(31,41,55,0.92)',
+          borderWidth: 0,
+          textStyle: { color: '#fff', fontSize: 12 },
+          formatter: function (p) {
+            var i = p[0].dataIndex;
+            var s = statusOf(key, d.points[i]);
+            var ev = '';
+            events.forEach(function (e) { if (e.idx === i) { ev = '<br/>当天事件：' + e.name; } });
+            return DATES[i] + '<br/>' + d.name + '：' + s + ev;
+          }
+        },
+        xAxis: {
+          type: 'category',
+          data: DATES,
+          boundaryGap: false,
+          axisLine: { lineStyle: { color: '#E7E9EE' } },
+          axisTick: { show: false },
+          axisLabel: { color: '#9AA1AA', fontSize: 10, interval: 3 }
+        },
+        yAxis: { type: 'value', show: false, min: -3.2, max: 3.2 },
+        series: [{
+          type: 'line',
+          data: d.points,
+          smooth: true,
+          showSymbol: false,
+          symbolSize: 6,
+          lineStyle: { width: 2.5, color: '#0F8A7E' },
+          itemStyle: { color: '#0F8A7E' },
+          areaStyle: { color: 'rgba(15,138,126,0.05)' },
+          markArea: {
+            silent: true,
+            itemStyle: { color: 'rgba(15,138,126,0.10)' },
+            data: [[{ yAxis: -0.8 }, { yAxis: 0.8 }]]
+          },
+          markLine: {
+            silent: true,
+            symbol: 'none',
+            lineStyle: { type: 'dashed', color: '#B7BDC6', width: 1 },
+            label: { show: false },
+            data: lines
+          },
+          markPoint: {
+            symbol: 'circle',
+            symbolSize: 10,
+            itemStyle: { color: '#E07A1F', borderColor: '#ffffff', borderWidth: 2 },
+            label: { show: false },
+            data: [{ coord: [DATES.length - 1, d.points[d.points.length - 1]] }]
+          }
+        }]
+      };
+    }
+
+    function switchTab(key) {
+      current = key;
+      var ids = { speed: 'tab-speed', fluency: 'tab-fluency', vocab: 'tab-vocab', coherence: 'tab-coherence' };
+      Object.keys(ids).forEach(function (k) {
+        var b = document.getElementById(ids[k]);
+        if (k === key) {
+          b.className = 'h-10 rounded-xl bg-[#0F8A7E] text-[12px] font-medium text-white';
+        } else {
+          b.className = 'h-10 rounded-xl bg-transparent text-[12px] font-medium text-[#6B7280]';
+        }
+      });
+
+      var d = TABS[key];
+      var warn = d.tone === 'warn';
+      document.getElementById('statusPill').textContent = d.status;
+      document.getElementById('statusPill').className = warn
+        ? 'rounded-full bg-[#FDF0E0] px-2.5 py-1 text-[11px] font-medium text-[#9A4B0A]'
+        : 'rounded-full bg-[#E6F4EF] px-2.5 py-1 text-[11px] font-medium text-[#10695F]';
+      document.getElementById('toneBar').className = warn ? 'w-1 bg-[#E07A1F] shrink-0' : 'w-1 bg-[#17876A] shrink-0';
+      document.getElementById('toneTitle').textContent = d.status;
+      document.getElementById('toneTitle').className = warn
+        ? 'text-[14px] font-semibold text-[#8A4209]'
+        : 'text-[14px] font-semibold text-[#10695F]';
+      document.getElementById('toneDesc').textContent = d.desc;
+      document.getElementById('toneExplain').textContent = d.explain;
+
+      if (chart) { chart.setOption(buildOption(key), true); }
+    }
+
+    function renderEvents() {
+      var chips = document.getElementById('eventChips');
+      chips.innerHTML = '';
+      EVENT_NAMES.forEach(function (n) {
+        var used = events.some(function (e) { return e.name === n; });
+        var b = document.createElement('button');
+        b.textContent = n;
+        b.className = used
+          ? 'rounded-full bg-[#E6F4EF] px-3 py-1.5 text-[12px] font-medium text-[#10695F] border border-[#9FD3CB]'
+          : 'rounded-full bg-[#F4F5F7] px-3 py-1.5 text-[12px] text-[#4B5563] border border-transparent';
+        b.onclick = function () { addEvent(n); };
+        chips.appendChild(b);
+      });
+
+      var list = document.getElementById('eventList');
+      list.innerHTML = '';
+      if (events.length === 0) {
+        var p = document.createElement('p');
+        p.className = 'text-[12px] text-[#A0A6AE]';
+        p.textContent = '还没有标注。点上面的标签，把这段时间发生的事记下来。';
+        list.appendChild(p);
+        return;
+      }
+      events.forEach(function (e, i) {
+        var row = document.createElement('div');
+        row.className = 'flex items-center gap-2 rounded-xl bg-[#F7F8FA] px-3 py-2';
+        row.innerHTML = '<iconify-icon icon="solar:flag-linear" class="text-[16px] text-[#8A9099]"></iconify-icon>' +
+          '<span class="text-[13px] text-[#3C4650]"></span>' +
+          '<span class="text-[11px] text-[#A0A6AE]"></span>' +
+          '<button class="ml-auto text-[12px] text-[#8A9099]">删除</button>';
+        row.children[1].textContent = e.name;
+        row.children[2].textContent = '标在 ' + DATES[e.idx];
+        row.children[3].onclick = function () { removeEvent(i); };
+        list.appendChild(row);
+      });
+    }
+
+    function addEvent(name) {
+      var exists = -1;
+      events.forEach(function (e, i) { if (e.name === name) { exists = i; } });
+      if (exists >= 0) {
+        events.splice(exists, 1);
+        renderEvents();
+        if (chart) { chart.setOption(buildOption(current), true); }
+        toast('已取消「' + name + '」的标注');
+        return;
+      }
+      events.push({ idx: DATES.length - 1, name: name });
+      renderEvents();
+      if (chart) { chart.setOption(buildOption(current), true); }
+      toast('已标注「' + name + '」');
+    }
+
+    function removeEvent(i) {
+      var n = events[i].name;
+      events.splice(i, 1);
+      renderEvents();
+      if (chart) { chart.setOption(buildOption(current), true); }
+      toast('已删掉「' + n + '」的标注');
+    }
+
+    function initChart() {
+      var el = document.getElementById('trendChart');
+      if (!el || !window.echarts) { return; }
+      chart = echarts.init(el);
+      chart.setOption(buildOption(current));
+      window.addEventListener('resize', function () { chart.resize(); });
+    }
+
+    renderEvents();
+    initChart();
+  </script>
+</body>
+</html>

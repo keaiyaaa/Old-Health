@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+
+<html class="w-full h-full overflow-hidden" lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>每日话题与提醒 · 家属端</title>
+<script src="https://modao.cc/agent-py/static/source/js/tailwindcss.js"></script>
+<script src="https://modao.cc/agent-py/static/source/js/iconify-icon.min.js"></script>
+<style>
+  html, body { font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; -webkit-tap-highlight-color: transparent; }
+  .no-sb { scrollbar-width: none; -ms-overflow-style: none; }
+  .no-sb::-webkit-scrollbar { display: none; width: 0; height: 0; }
+</style>
+</head>
+<body class="w-full h-full m-0 overflow-hidden flex items-center justify-center bg-[#DCE0E5]">
+<div class="relative w-full h-full max-w-[393px] max-h-[852px] bg-[#F4F5F7] overflow-hidden flex flex-col">
+<header class="shrink-0 flex items-center gap-1 px-3 pt-4 pb-2">
+<a class="w-11 h-11 flex items-center justify-center rounded-full text-[#4B5563] active:bg-[#E7E9EE]" href="family-overview.html">
+<iconify-icon class="text-[24px]" icon="solar:alt-arrow-left-linear"></iconify-icon>
+</a>
+<h1 class="flex-1 text-[17px] font-semibold text-[#1F2937]">每日话题与提醒</h1>
+<a class="w-11 h-11 flex items-center justify-center rounded-full text-[#4B5563] active:bg-[#E7E9EE]" href="family-privacy.html">
+<iconify-icon class="text-[22px]" icon="solar:shield-check-linear"></iconify-icon>
+</a>
+</header>
+<div class="flex-1 min-h-0 overflow-y-auto no-sb px-4 pb-4">
+<div class="rounded-2xl bg-white p-4 shadow-[0_2px_10px_rgba(31,41,55,0.05)]">
+<div class="flex items-center justify-between">
+<div>
+<p class="text-[15px] font-semibold text-[#1F2937]">话题库</p>
+<p class="mt-0.5 text-[12px] text-[#8A9099]">老人端每次随机出现 3 条，可以随时换一批</p>
+</div>
+<span class="rounded-full bg-[#F4F5F7] px-2.5 py-1 text-[11px] text-[#6B7280]">共 5 条</span>
+</div>
+<div class="mt-3 space-y-2" id="topicList"></div>
+<button class="mt-3 h-11 w-full rounded-2xl border border-dashed border-[#C6CCD4] text-[14px] font-medium text-[#0F8A7E] active:bg-[#F1F6F5]" onclick="addTopic()">+ 添加话题</button>
+</div>
+<div class="mt-3 rounded-2xl bg-white p-4 shadow-[0_2px_10px_rgba(31,41,55,0.05)]">
+<p class="text-[15px] font-semibold text-[#1F2937]">提醒</p>
+<div class="mt-3 flex items-center gap-3">
+<span class="w-10 h-10 rounded-xl bg-[#E6F4EF] flex items-center justify-center shrink-0">
+<iconify-icon class="text-[20px] text-[#0F8A7E]" icon="solar:bell-linear"></iconify-icon>
+</span>
+<div class="flex-1">
+<p class="text-[14px] font-medium text-[#1F2937]">提醒老人</p>
+<p class="mt-0.5 text-[12px] text-[#8A9099]">在这个时间轻轻响一下</p>
+</div>
+<button class="h-9 px-3 rounded-xl bg-[#F4F5F7] text-[13px] font-medium text-[#3C4650]" id="elderTime" onclick="openTimePicker('elder')">19:30</button>
+<button class="w-[54px] h-[32px] rounded-full bg-[#0F8A7E] p-[3px] flex justify-end shrink-0" id="sw-elder" onclick="toggleSwitch('elder')">
+<span class="w-[26px] h-[26px] rounded-full bg-white shadow"></span>
+</button>
+</div>
+<div class="mt-3 flex items-center gap-3">
+<span class="w-10 h-10 rounded-xl bg-[#EDF1F7] flex items-center justify-center shrink-0">
+<iconify-icon class="text-[20px] text-[#3E5F82]" icon="solar:user-rounded-linear"></iconify-icon>
+</span>
+<div class="flex-1">
+<p class="text-[14px] font-medium text-[#1F2937]">提醒我</p>
+<p class="mt-0.5 text-[12px] text-[#8A9099]">我看一眼今天有没有记录</p>
+</div>
+<button class="h-9 px-3 rounded-xl bg-[#F4F5F7] text-[13px] font-medium text-[#3C4650]" id="meTime" onclick="openTimePicker('me')">21:00</button>
+<button class="w-[54px] h-[32px] rounded-full bg-[#0F8A7E] p-[3px] flex justify-end shrink-0" id="sw-me" onclick="toggleSwitch('me')">
+<span class="w-[26px] h-[26px] rounded-full bg-white shadow"></span>
+</button>
+</div>
+<div class="mt-4 rounded-2xl bg-[#F7F8FA] p-3.5">
+<div class="flex items-start gap-2">
+<iconify-icon class="mt-0.5 text-[18px] text-[#8A9099] shrink-0" icon="solar:shield-warning-linear"></iconify-icon>
+<p class="text-[12px] leading-relaxed text-[#6B7280]">
+              如果连续 3 天没有记录，提醒会自动改成隔天一次，避免给他压力。
+            </p>
+</div>
+<p class="mt-2 pl-6 text-[12px] leading-relaxed text-[#9AA1AA]">
+            他不想录的时候，什么都不要提醒。这个工具是陪着，不是盯着。
+          </p>
+</div>
+</div>
+<div class="mt-3 rounded-2xl bg-white p-4 shadow-[0_2px_10px_rgba(31,41,55,0.05)]">
+<p class="text-[15px] font-semibold text-[#1F2937]">这一周的话题安排</p>
+<div class="mt-3 space-y-2">
+<div class="flex items-center gap-3 rounded-xl bg-[#F7F8FA] px-3.5 py-2.5">
+<span class="text-[12px] text-[#8A9099] w-14 shrink-0">周一</span>
+<span class="flex-1 text-[13px] text-[#3C4650]">今天吃了什么好吃的</span>
+<iconify-icon class="text-[17px] text-[#0F8A7E]" icon="solar:check-circle-linear"></iconify-icon>
+</div>
+<div class="flex items-center gap-3 rounded-xl bg-[#F7F8FA] px-3.5 py-2.5">
+<span class="text-[12px] text-[#8A9099] w-14 shrink-0">周五</span>
+<span class="flex-1 text-[13px] text-[#3C4650]">讲一件小时候的事</span>
+<span class="rounded-full bg-[#FFF4E4] px-2 py-0.5 text-[11px] text-[#9A4B0A]">今天</span>
+</div>
+<div class="flex items-center gap-3 rounded-xl bg-[#F7F8FA] px-3.5 py-2.5">
+<span class="text-[12px] text-[#8A9099] w-14 shrink-0">周日</span>
+<span class="flex-1 text-[13px] text-[#3C4650]">今天出门看到什么</span>
+<span class="text-[11px] text-[#A0A6AE]">待安排</span>
+</div>
+</div>
+<p class="mt-3 text-[11px] leading-relaxed text-[#A0A6AE]">话题只是给他一个由头，说什么都行，不录也没有关系。</p>
+</div>
+</div>
+<div class="shrink-0 border-t border-[#E3E6EA] bg-white">
+<button class="w-full px-4 py-2.5 flex items-center justify-center gap-1.5 text-[11px] text-[#8A9099]" onclick="toggleDisclaimer()">
+<iconify-icon class="text-[13px]" icon="solar:info-circle-linear"></iconify-icon>
+<span>本工具只做记录和变化提示，不提供诊断。</span>
+<span class="text-[#0F8A7E]" id="discMore">展开说明</span>
+</button>
+<div class="hidden px-4 pb-3" id="disclaimerFull">
+<p class="text-[11px] leading-relaxed text-[#6B7280]">
+          话题和提醒只是为了让记录更容易坚持下去，不代表任何身体或大脑的状况，也不能代替医生。
+          如果老人表示不愿意被提醒，建议把提醒关掉一段时间。
+        </p>
+</div>
+</div>
+<div class="hidden absolute inset-0 z-40" id="editSheet">
+<div class="absolute inset-0 bg-[#1F2937]/40" onclick="closeEdit()"></div>
+<div class="absolute bottom-0 left-0 right-0 rounded-t-2xl bg-white p-5">
+<p class="text-[15px] font-semibold text-[#1F2937]">编辑话题</p>
+<input class="mt-3 w-full h-12 rounded-2xl bg-[#F7F8FA] border border-[#E7E9EE] px-3.5 text-[14px] text-[#3C4650] outline-none focus:border-[#0F8A7E]" id="editInput" type="text"/>
+<div class="mt-3 flex gap-3">
+<button class="flex-1 h-11 rounded-2xl bg-[#F4F5F7] text-[14px] font-medium text-[#3C4650]" onclick="closeEdit()">取消</button>
+<button class="flex-1 h-11 rounded-2xl bg-[#0F8A7E] text-[14px] font-medium text-white" onclick="saveEdit()">保存</button>
+</div>
+</div>
+</div>
+<div class="hidden absolute inset-0 z-40" id="timeSheet">
+<div class="absolute inset-0 bg-[#1F2937]/40" onclick="closeTime()"></div>
+<div class="absolute bottom-0 left-0 right-0 rounded-t-2xl bg-white p-5">
+<p class="text-[15px] font-semibold text-[#1F2937]" id="timeTitle">提醒时间</p>
+<p class="mt-1 text-[12px] text-[#8A9099]">老人端用大字号显示，选他平时在家的时间就好。</p>
+<div class="mt-4 flex items-center justify-center gap-3">
+<select class="h-12 w-24 rounded-2xl bg-[#F7F8FA] border border-[#E7E9EE] px-3 text-[16px] text-[#3C4650]" id="hourSel"></select>
+<span class="text-[18px] text-[#8A9099]">:</span>
+<select class="h-12 w-24 rounded-2xl bg-[#F7F8FA] border border-[#E7E9EE] px-3 text-[16px] text-[#3C4650]" id="minSel"></select>
+</div>
+<button class="mt-5 h-11 w-full rounded-2xl bg-[#0F8A7E] text-[14px] font-medium text-white" onclick="saveTime()">确定</button>
+</div>
+</div>
+<div class="pointer-events-none absolute left-1/2 bottom-[86px] z-50 hidden -translate-x-1/2 whitespace-nowrap rounded-full bg-[#1F2937]/90 px-4 py-2 text-[13px] text-white" id="toast"></div>
+</div>
+<script>
+    var topics = [
+      '今天吃了什么好吃的',
+      '今天出门走走，看到什么',
+      '讲一件小时候的事',
+      '最近在看的电视或听的戏',
+      '给孙子孙女说一句话'
+    ];
+
+    var switches = { elder: true, me: true };
+    var timeTarget = 'elder';
+    var editingIndex = -1;
+    var toastTimer = null;
+
+    function toast(msg) {
+      var t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.remove('hidden');
+      if (toastTimer) { clearTimeout(toastTimer); }
+      toastTimer = setTimeout(function () { t.classList.add('hidden'); }, 2000);
+    }
+
+    function renderTopics() {
+      var box = document.getElementById('topicList');
+      box.innerHTML = '';
+      topics.forEach(function (t, i) {
+        var row = document.createElement('div');
+        row.className = 'flex items-center gap-3 rounded-2xl bg-[#F7F8FA] px-3.5 py-3';
+        var span = document.createElement('span');
+        span.className = 'flex-1 text-[13px] leading-relaxed text-[#3C4650]';
+        span.textContent = t;
+        var btn = document.createElement('button');
+        btn.className = 'h-8 px-3 rounded-full bg-white text-[12px] text-[#0F8A7E] border border-[#E7E9EE] shrink-0';
+        btn.textContent = '编辑';
+        btn.onclick = function () { openEdit(i); };
+        row.appendChild(span);
+        row.appendChild(btn);
+        box.appendChild(row);
+      });
+    }
+
+    function addTopic() {
+      topics.push('新话题（点「编辑」改内容）');
+      renderTopics();
+      openEdit(topics.length - 1);
+    }
+
+    function openEdit(i) {
+      editingIndex = i;
+      document.getElementById('editInput').value = topics[i];
+      document.getElementById('editSheet').classList.remove('hidden');
+    }
+    function closeEdit() { document.getElementById('editSheet').classList.add('hidden'); }
+    function saveEdit() {
+      var v = document.getElementById('editInput').value.trim();
+      if (!v) { toast('话题不能是空的'); return; }
+      topics[editingIndex] = v;
+      renderTopics();
+      closeEdit();
+      toast('话题已更新，老人端会跟着变');
+    }
+
+    function toggleSwitch(key) {
+      switches[key] = !switches[key];
+      var box = document.getElementById('sw-' + key);
+      box.className = switches[key]
+        ? 'w-[54px] h-[32px] rounded-full bg-[#0F8A7E] p-[3px] flex justify-end shrink-0'
+        : 'w-[54px] h-[32px] rounded-full bg-[#D8DDE4] p-[3px] flex justify-start shrink-0';
+      toast((key === 'elder' ? '提醒老人' : '提醒我') + ' 已' + (switches[key] ? '打开' : '关掉'));
+    }
+
+    function initTime() {
+      var h = document.getElementById('hourSel');
+      var m = document.getElementById('minSel');
+      h.innerHTML = '';
+      m.innerHTML = '';
+      for (var i = 0; i < 24; i++) {
+        var o = document.createElement('option');
+        o.value = (i < 10 ? '0' + i : '' + i);
+        o.textContent = (i < 10 ? '0' + i : '' + i) + ' 点';
+        h.appendChild(o);
+      }
+      ['00', '15', '30', '45'].forEach(function (v) {
+        var o = document.createElement('option');
+        o.value = v;
+        o.textContent = v + ' 分';
+        m.appendChild(o);
+      });
+    }
+
+    function openTimePicker(target) {
+      timeTarget = target;
+      document.getElementById('timeTitle').textContent = target === 'elder' ? '提醒老人的时间' : '提醒我的时间';
+      var cur = document.getElementById(target + 'Time').textContent.split(':');
+      document.getElementById('hourSel').value = cur[0];
+      document.getElementById('minSel').value = cur[1];
+      document.getElementById('timeSheet').classList.remove('hidden');
+    }
+    function closeTime() { document.getElementById('timeSheet').classList.add('hidden'); }
+    function saveTime() {
+      var v = document.getElementById('hourSel').value + ':' + document.getElementById('minSel').value;
+      document.getElementById(timeTarget + 'Time').textContent = v;
+      closeTime();
+      toast('已改成每天 ' + v + ' 提醒');
+    }
+
+    function toggleDisclaimer() {
+      var box = document.getElementById('disclaimerFull');
+      var more = document.getElementById('discMore');
+      if (box.classList.contains('hidden')) { box.classList.remove('hidden'); more.textContent = '收起'; }
+      else { box.classList.add('hidden'); more.textContent = '展开说明'; }
+    }
+
+    renderTopics();
+    initTime();
+  </script>
+</body>
+</html>

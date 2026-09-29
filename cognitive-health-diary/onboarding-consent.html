@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+
+<html class="w-full h-full overflow-hidden" lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>知情同意</title>
+<script src="https://modao.cc/agent-py/static/source/js/tailwindcss.js"></script>
+<script src="https://modao.cc/agent-py/static/source/js/iconify-icon.min.js"></script>
+<style>
+  html, body { font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; -webkit-tap-highlight-color: transparent; }
+  .no-sb { scrollbar-width: none; -ms-overflow-style: none; }
+  .no-sb::-webkit-scrollbar { display: none; width: 0; height: 0; }
+  .txt-lg .copy { font-size: 19px; line-height: 1.8; }
+  .txt-lg .copy-sm { font-size: 16px; line-height: 1.75; }
+</style>
+</head>
+<body class="w-full h-full m-0 overflow-hidden flex items-center justify-center bg-[#DCE0E5]">
+<div class="relative w-full h-full max-w-[393px] max-h-[852px] bg-[#F6F7F9] overflow-hidden flex flex-col">
+<header class="shrink-0 flex items-center justify-between px-2 pt-3 pb-1">
+<a class="w-12 h-12 flex items-center justify-center rounded-full text-[#3C4650] active:bg-[#E7E9EE]" href="onboarding-intro.html">
+<iconify-icon class="text-[24px]" icon="solar:alt-arrow-left-linear"></iconify-icon>
+</a>
+<p class="text-[15px] font-medium text-[#6B7280]">第 2 步 / 共 2 步</p>
+</header>
+<div class="flex-1 min-h-0 overflow-y-auto no-sb px-5 pb-4" id="consentBody">
+<h1 class="pt-2 text-[24px] font-semibold text-[#1F2937]">开始前，跟你说清楚</h1>
+<p class="copy mt-2 text-[15px] leading-relaxed text-[#6B7280]">
+        录音属于敏感个人信息，我们单独请你确认一次。下面三件事点开就能看详细说法。
+      </p>
+<div class="mt-4 flex gap-2">
+<button class="flex-1 h-11 rounded-xl bg-white border border-[#E0E4EA] flex items-center justify-center gap-2 text-[15px] font-medium text-[#0F8A7E] active:bg-[#F1F6F5]" onclick="toggleRead()">
+<iconify-icon class="text-[20px]" icon="solar:volume-loud-linear" id="readIcon"></iconify-icon>
+<span id="readLabel">语音朗读</span>
+</button>
+<button class="flex-1 h-11 rounded-xl bg-white border border-[#E0E4EA] flex items-center justify-center gap-2 text-[15px] font-medium text-[#0F8A7E] active:bg-[#F1F6F5]" onclick="toggleBigText()">
+<iconify-icon class="text-[20px]" icon="solar:text-square-linear"></iconify-icon>
+<span id="bigLabel">大字版查看</span>
+</button>
+</div>
+<div class="mt-4 space-y-3">
+<div class="rounded-2xl bg-white border border-[#E7E9EE] overflow-hidden">
+<button class="w-full flex items-center gap-3 p-4 text-left" onclick="toggleAcc(1)">
+<span class="w-8 h-8 rounded-full bg-[#E6F4EF] flex items-center justify-center shrink-0">
+<iconify-icon class="text-[18px] text-[#0F8A7E]" icon="solar:lock-keyhole-linear"></iconify-icon>
+</span>
+<span class="flex-1 text-[16px] font-medium text-[#1F2937]">录音怎么存、存多久</span>
+<iconify-icon class="text-[20px] text-[#8A9099]" icon="solar:alt-arrow-down-linear" id="accIcon1"></iconify-icon>
+</button>
+<div class="hidden px-4 pb-4" id="acc1">
+<p class="copy-sm text-[14px] leading-relaxed text-[#4B5563]">
+              录音在手机上就加密，传到服务器也是加密保存，别人拿不到。默认在云端保存 24 个月，你可以随时改成更短或更长，也可以立刻删掉某一段。
+            </p>
+</div>
+</div>
+<div class="rounded-2xl bg-white border border-[#E7E9EE] overflow-hidden">
+<button class="w-full flex items-center gap-3 p-4 text-left" onclick="toggleAcc(2)">
+<span class="w-8 h-8 rounded-full bg-[#E6F4EF] flex items-center justify-center shrink-0">
+<iconify-icon class="text-[18px] text-[#0F8A7E]" icon="solar:users-group-rounded-linear"></iconify-icon>
+</span>
+<span class="flex-1 text-[16px] font-medium text-[#1F2937]">谁能看到这些记录</span>
+<iconify-icon class="text-[20px] text-[#8A9099]" icon="solar:alt-arrow-down-linear" id="accIcon2"></iconify-icon>
+</button>
+<div class="hidden px-4 pb-4" id="acc2">
+<p class="copy-sm text-[14px] leading-relaxed text-[#4B5563]">
+              只有你自己，和你亲自邀请的家人（最多 3 位）。医生看不到，除非你把材料导出后自己交给医生。家人被邀请后才能看，你也可以随时把某个人移出去。
+            </p>
+</div>
+</div>
+<div class="rounded-2xl bg-white border border-[#E7E9EE] overflow-hidden">
+<button class="w-full flex items-center gap-3 p-4 text-left" onclick="toggleAcc(3)">
+<span class="w-8 h-8 rounded-full bg-[#E6F4EF] flex items-center justify-center shrink-0">
+<iconify-icon class="text-[18px] text-[#0F8A7E]" icon="solar:trash-bin-trash-linear"></iconify-icon>
+</span>
+<span class="flex-1 text-[16px] font-medium text-[#1F2937]">随时可以删除或注销</span>
+<iconify-icon class="text-[20px] text-[#8A9099]" icon="solar:alt-arrow-down-linear" id="accIcon3"></iconify-icon>
+</button>
+<div class="hidden px-4 pb-4" id="acc3">
+<p class="copy-sm text-[14px] leading-relaxed text-[#4B5563]">
+              单条记录、某一天的记录、全部记录都能删。也可以直接注销账号，注销后录音、文字分析结果和备注会一并彻底清除，不能恢复。
+            </p>
+</div>
+</div>
+</div>
+<button class="mt-4 w-full flex items-start gap-3 rounded-2xl bg-white p-4 border border-[#E7E9EE] text-left active:bg-[#F8F9FB]" onclick="toggleC1()">
+<span class="mt-[1px] w-6 h-6 rounded-md border-2 border-[#C6CCD4] bg-white flex items-center justify-center shrink-0" id="tick1">
+<iconify-icon class="hidden text-[16px] text-white" icon="solar:check-read-linear" id="icon1"></iconify-icon>
+</span>
+<span class="copy-sm text-[14px] leading-relaxed text-[#3C4650]">
+          我已阅读并同意
+          <a class="text-[#0F8A7E] underline decoration-[#9FD3CB] underline-offset-2" href="onboarding-intro.html">《用户协议》</a>
+          和
+          <a class="text-[#0F8A7E] underline decoration-[#9FD3CB] underline-offset-2" href="onboarding-intro.html">《隐私政策》</a>
+</span>
+</button>
+<button class="mt-3 w-full flex items-start gap-3 rounded-2xl bg-[#FFF6E9] p-4 border border-[#F3E2C6] text-left active:bg-[#FBEEDA]" onclick="toggleC2()">
+<span class="mt-[1px] w-6 h-6 rounded-md border-2 border-[#D4B27C] bg-white flex items-center justify-center shrink-0" id="tick2">
+<iconify-icon class="hidden text-[16px] text-white" icon="solar:check-read-linear" id="icon2"></iconify-icon>
+</span>
+<span class="copy-sm text-[14px] leading-relaxed text-[#7A4A0C]">
+          我单独同意：将我的语音录音等敏感个人信息，用于上面写明的「录音记录、变化提示、生成给医生看的材料」这些用途。
+        </span>
+</button>
+<p class="mt-3 mb-2 text-[13px] leading-relaxed text-[#96A0AA]">
+        两项是分开勾选的。只勾第一项也能使用基础功能；不勾第二项，我们不会上传和分析你的语音。
+      </p>
+</div>
+<div class="shrink-0 px-5 pt-3 pb-5 bg-[#F6F7F9] border-t border-[#E7E9EE]">
+<a class="h-[56px] rounded-2xl bg-[#0F8A7E] flex items-center justify-center text-[18px] font-semibold text-white pointer-events-none opacity-40 transition" href="home.html" id="agreeBtn">同意并继续</a>
+<a class="mt-3 block text-center text-[14px] text-[#8A9099]" href="home.html">暂时不同意，先看看</a>
+</div>
+</div>
+<div class="pointer-events-none absolute left-1/2 bottom-[130px] hidden -translate-x-1/2 rounded-full bg-[#1F2937]/90 px-4 py-2 text-[13px] text-white" id="readToast"></div>
+<script>
+    var c1 = false;
+    var c2 = false;
+    var reading = false;
+    var bigText = false;
+
+    function refreshBtn() {
+      var btn = document.getElementById('agreeBtn');
+      if (c1 && c2) {
+        btn.classList.remove('pointer-events-none', 'opacity-40');
+      } else {
+        btn.classList.add('pointer-events-none', 'opacity-40');
+      }
+    }
+
+    function paintTick(n, on) {
+      var tick = document.getElementById('tick' + n);
+      var icon = document.getElementById('icon' + n);
+      var base = n === 2
+        ? ['mt-[1px] w-6 h-6 rounded-md border-2 border-[#D4B27C] bg-white flex items-center justify-center shrink-0',
+           'mt-[1px] w-6 h-6 rounded-md border-2 border-[#C4832C] bg-[#C4832C] flex items-center justify-center shrink-0']
+        : ['mt-[1px] w-6 h-6 rounded-md border-2 border-[#C6CCD4] bg-white flex items-center justify-center shrink-0',
+           'mt-[1px] w-6 h-6 rounded-md border-2 border-[#0F8A7E] bg-[#0F8A7E] flex items-center justify-center shrink-0'];
+      tick.className = base[on ? 1 : 0];
+      if (on) { icon.classList.remove('hidden'); } else { icon.classList.add('hidden'); }
+    }
+
+    function toggleC1() { c1 = !c1; paintTick(1, c1); refreshBtn(); }
+    function toggleC2() { c2 = !c2; paintTick(2, c2); refreshBtn(); }
+
+    function toggleAcc(n) {
+      var panel = document.getElementById('acc' + n);
+      var icon = document.getElementById('accIcon' + n);
+      if (panel.classList.contains('hidden')) {
+        panel.classList.remove('hidden');
+        icon.setAttribute('icon', 'solar:alt-arrow-up-linear');
+      } else {
+        panel.classList.add('hidden');
+        icon.setAttribute('icon', 'solar:alt-arrow-down-linear');
+      }
+    }
+
+    function showReadToast(msg) {
+      var t = document.getElementById('readToast');
+      t.textContent = msg;
+      t.classList.remove('hidden');
+      setTimeout(function () { t.classList.add('hidden'); }, 2200);
+    }
+
+    function toggleRead() {
+      var body = document.getElementById('consentBody');
+      var label = document.getElementById('readLabel');
+      var icon = document.getElementById('readIcon');
+      if (reading) {
+        reading = false;
+        label.textContent = '语音朗读';
+        icon.setAttribute('icon', 'solar:volume-loud-linear');
+        if (window.speechSynthesis) { window.speechSynthesis.cancel(); }
+        showReadToast('已停止朗读');
+        return;
+      }
+      reading = true;
+      label.textContent = '停止朗读';
+      icon.setAttribute('icon', 'solar:volume-cross-linear');
+      if (window.speechSynthesis) {
+        try {
+          var txt = body.innerText.replace(/\s+/g, ' ').slice(0, 320);
+          var u = new SpeechSynthesisUtterance(txt);
+          u.lang = 'zh-CN';
+          u.rate = 0.95;
+          u.onend = function () {
+            reading = false;
+            label.textContent = '语音朗读';
+            icon.setAttribute('icon', 'solar:volume-loud-linear');
+          };
+          window.speechSynthesis.cancel();
+          window.speechSynthesis.speak(u);
+          showReadToast('正在朗读这段说明…');
+        } catch (e) {
+          showReadToast('这台设备暂时不支持朗读，可以让家里人念给你听');
+        }
+      } else {
+        showReadToast('这台设备暂时不支持朗读，可以让家里人念给你听');
+      }
+    }
+
+    function toggleBigText() {
+      bigText = !bigText;
+      var body = document.getElementById('consentBody');
+      var label = document.getElementById('bigLabel');
+      if (bigText) {
+        body.classList.add('txt-lg');
+        label.textContent = '标准字号';
+      } else {
+        body.classList.remove('txt-lg');
+        label.textContent = '大字版查看';
+      }
+    }
+  </script>
+</body>
+</html>

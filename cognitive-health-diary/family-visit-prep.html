@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+
+<html class="w-full h-full overflow-hidden" lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>就医准备 · 家属端</title>
+<script src="https://modao.cc/agent-py/static/source/js/tailwindcss.js"></script>
+<script src="https://modao.cc/agent-py/static/source/js/iconify-icon.min.js"></script>
+<style>
+  html, body { font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; -webkit-tap-highlight-color: transparent; }
+  .no-sb { scrollbar-width: none; -ms-overflow-style: none; }
+  .no-sb::-webkit-scrollbar { display: none; width: 0; height: 0; }
+</style>
+</head>
+<body class="w-full h-full m-0 overflow-hidden flex items-center justify-center bg-[#DCE0E5]">
+<div class="relative w-full h-full max-w-[393px] max-h-[852px] bg-[#F4F5F7] overflow-hidden flex flex-col">
+<header class="shrink-0 flex items-center gap-1 px-3 pt-4 pb-2">
+<a class="w-11 h-11 flex items-center justify-center rounded-full text-[#4B5563] active:bg-[#E7E9EE]" href="family-overview.html">
+<iconify-icon class="text-[24px]" icon="solar:alt-arrow-left-linear"></iconify-icon>
+</a>
+<h1 class="flex-1 text-[17px] font-semibold text-[#1F2937]">就医准备</h1>
+<a class="w-11 h-11 flex items-center justify-center rounded-full text-[#4B5563] active:bg-[#E7E9EE]" href="family-research.html">
+<iconify-icon class="text-[22px]" icon="solar:notebook-bookmark-linear"></iconify-icon>
+</a>
+</header>
+<div class="flex-1 min-h-0 overflow-y-auto no-sb px-4 pb-4">
+<div data-ui="ready">
+<div class="rounded-2xl bg-white p-4 shadow-[0_2px_10px_rgba(31,41,55,0.05)]">
+<div class="flex items-center justify-between">
+<p class="text-[15px] font-semibold text-[#1F2937]">就诊摘要预览</p>
+<span class="rounded-full bg-[#E6F4EF] px-2.5 py-1 text-[11px] font-medium text-[#10695F]">可以生成</span>
+</div>
+<p class="mt-1 text-[12px] text-[#8A9099]">共 2 页 · 最近一次更新 今天 09:05</p>
+<div class="mt-3 rounded-2xl border border-[#EDF0F3] bg-[#FAFBFC] p-3.5">
+<div class="flex items-center gap-2">
+<span class="w-6 h-6 rounded-full bg-[#E6F4EF] text-[11px] font-semibold text-[#10695F] flex items-center justify-center">1</span>
+<p class="text-[13px] font-medium text-[#1F2937]">主诉与记录情况</p>
+</div>
+<p class="mt-2 text-[12px] leading-relaxed text-[#5B6470]">
+              家属观察到：最近两周说话比平时慢一些、用到的词少了一些。近 30 天共录 26 段，有效记录 24 段，几乎每天都有。
+            </p>
+<div class="mt-3 flex items-center gap-2">
+<span class="w-6 h-6 rounded-full bg-[#E6F4EF] text-[11px] font-semibold text-[#10695F] flex items-center justify-center">2</span>
+<p class="text-[13px] font-medium text-[#1F2937]">四个方面的变化方向</p>
+</div>
+<p class="mt-2 text-[12px] leading-relaxed text-[#5B6470]">
+              说话速度：近期低于她自己的平时范围，慢慢变慢的趋势。<br/>
+              说话流畅度：与平时基本一致。<br/>
+              用词丰富程度：近期低于平时范围。<br/>
+              说话的连贯性：与平时基本一致。
+            </p>
+<div class="mt-3 flex items-center gap-2">
+<span class="w-6 h-6 rounded-full bg-[#E6F4EF] text-[11px] font-semibold text-[#10695F] flex items-center justify-center">3</span>
+<p class="text-[13px] font-medium text-[#1F2937]">同期发生的事</p>
+</div>
+<p class="mt-2 text-[12px] leading-relaxed text-[#5B6470]">9月22日 感冒（家属标注）；9月16日起 连续几天失眠（家属标注）。</p>
+<div class="mt-3 flex items-center gap-2">
+<span class="w-6 h-6 rounded-full bg-[#E6F4EF] text-[11px] font-semibold text-[#10695F] flex items-center justify-center">4</span>
+<p class="text-[13px] font-medium text-[#1F2937]">家属观察与想问的问题</p>
+</div>
+<p class="mt-2 text-[12px] leading-relaxed text-[#5B6470]">妈妈自己没觉得有什么不舒服；想问医生：这种情况需要做哪些检查、平时在家里可以注意什么。</p>
+</div>
+<p class="mt-3 text-[11px] leading-relaxed text-[#A0A6AE]">这份材料只整理已记录的内容，不含任何结论，供医生参考。</p>
+<a class="mt-3 h-11 w-full rounded-2xl bg-[#0F8A7E] text-[14px] font-medium text-white flex items-center justify-center active:bg-[#0B6B62]" href="family-visit-prep.html" onclick="toast('已生成 2 页 PDF，可保存或转发给医生')">生成就诊摘要（2 页）</a>
+<div class="mt-2 flex gap-2">
+<button class="flex-1 h-10 rounded-2xl bg-[#F4F5F7] text-[13px] font-medium text-[#3C4650]" onclick="toast('已复制分享链接，7 天后自动失效')">分享给医生</button>
+<button class="flex-1 h-10 rounded-2xl bg-[#F4F5F7] text-[13px] font-medium text-[#3C4650]" onclick="toast('已保存到手机文件里')">保存到手机</button>
+</div>
+</div>
+</div>
+<div class="hidden" data-ui="insufficient">
+<div class="rounded-2xl bg-white p-4 shadow-[0_2px_10px_rgba(31,41,55,0.05)]">
+<div class="flex items-center justify-between">
+<p class="text-[15px] font-semibold text-[#1F2937]">就诊摘要预览</p>
+<span class="rounded-full bg-[#F1F3F6] px-2.5 py-1 text-[11px] text-[#6B7280]">记录还少</span>
+</div>
+<div class="mt-3 rounded-2xl bg-[#F7F8FA] px-4 py-6 flex flex-col items-center">
+<span class="w-[68px] h-[68px] rounded-full bg-white flex items-center justify-center">
+<iconify-icon class="text-[32px] text-[#B7BDC6]" icon="solar:hourglass-line-linear"></iconify-icon>
+</span>
+<p class="mt-4 text-[13px] leading-relaxed text-center text-[#5B6470]">
+              记录还太少（需要至少 4 条），暂时生成不了就诊摘要。
+            </p>
+<p class="mt-2 text-[12px] leading-relaxed text-center text-[#9AA1AA]">
+              等有效记录攒到 4 条以上，这里就可以生成了。这几天先安心记录就好。
+            </p>
+</div>
+<div class="mt-3 rounded-2xl bg-[#FFF6E9] border border-[#F3E2C6] p-3.5">
+<p class="text-[12px] leading-relaxed text-[#7A4A0C]">当前有效记录 3 条 · 还差 1 条。刚换手机、这段时间身体不舒服，都会让记录少一些。</p>
+</div>
+<button class="mt-3 h-11 w-full rounded-2xl bg-[#E4E7EB] text-[14px] font-medium text-[#9AA1AA] cursor-not-allowed">生成就诊摘要（暂时不可用）</button>
+</div>
+</div>
+<div class="mt-3 rounded-2xl bg-white p-4 shadow-[0_2px_10px_rgba(31,41,55,0.05)]">
+<div class="flex items-center gap-2">
+<iconify-icon class="text-[19px] text-[#0F8A7E]" icon="solar:hospital-linear"></iconify-icon>
+<p class="text-[15px] font-semibold text-[#1F2937]">挂什么科</p>
+</div>
+<div class="mt-3 space-y-2">
+<div class="rounded-xl bg-[#F7F8FA] px-3.5 py-2.5">
+<p class="text-[13px] font-medium text-[#3C4650]">神经内科 · 记忆门诊</p>
+<p class="mt-0.5 text-[12px] text-[#8A9099]">大医院一般都有记忆门诊，专门看这类情况</p>
+</div>
+<div class="rounded-xl bg-[#F7F8FA] px-3.5 py-2.5">
+<p class="text-[13px] font-medium text-[#3C4650]">老年科</p>
+<p class="mt-0.5 text-[12px] text-[#8A9099]">如果还有血压、血糖这些老毛病，可以一起看</p>
+</div>
+</div>
+</div>
+<div class="mt-3 rounded-2xl bg-white p-4 shadow-[0_2px_10px_rgba(31,41,55,0.05)]">
+<div class="flex items-center gap-2">
+<iconify-icon class="text-[19px] text-[#0F8A7E]" icon="solar:bag-check-linear"></iconify-icon>
+<p class="text-[15px] font-semibold text-[#1F2937]">带什么</p>
+</div>
+<div class="mt-3 space-y-2">
+<label class="flex items-center gap-3 rounded-xl bg-[#F7F8FA] px-3.5 py-2.5">
+<input checked="" class="w-4 h-4 accent-[#0F8A7E]" type="checkbox"/>
+<span class="text-[13px] text-[#3C4650]">身份证、医保卡</span>
+</label>
+<label class="flex items-center gap-3 rounded-xl bg-[#F7F8FA] px-3.5 py-2.5">
+<input checked="" class="w-4 h-4 accent-[#0F8A7E]" type="checkbox"/>
+<span class="text-[13px] text-[#3C4650]">既往病历、以前的检查单</span>
+</label>
+<label class="flex items-center gap-3 rounded-xl bg-[#F7F8FA] px-3.5 py-2.5">
+<input checked="" class="w-4 h-4 accent-[#0F8A7E]" type="checkbox"/>
+<span class="text-[13px] text-[#3C4650]">正在吃的药（最好把药盒带上）</span>
+</label>
+<label class="flex items-center gap-3 rounded-xl bg-[#F7F8FA] px-3.5 py-2.5">
+<input class="w-4 h-4 accent-[#0F8A7E]" type="checkbox"/>
+<span class="text-[13px] text-[#3C4650]">老花镜、助听器</span>
+</label>
+<label class="flex items-center gap-3 rounded-xl bg-[#F7F8FA] px-3.5 py-2.5">
+<input class="w-4 h-4 accent-[#0F8A7E]" type="checkbox"/>
+<span class="text-[13px] text-[#3C4650]">打印好的就诊摘要（2 页）</span>
+</label>
+</div>
+</div>
+<div class="mt-3 rounded-2xl bg-white p-4 shadow-[0_2px_10px_rgba(31,41,55,0.05)]">
+<div class="flex items-center gap-2">
+<iconify-icon class="text-[19px] text-[#0F8A7E]" icon="solar:chat-square-like-linear"></iconify-icon>
+<p class="text-[15px] font-semibold text-[#1F2937]">可以问医生这 5 个问题</p>
+</div>
+<div class="mt-3 space-y-2.5">
+<div class="flex gap-2.5">
+<span class="w-5 h-5 rounded-full bg-[#E6F4EF] text-[11px] font-semibold text-[#10695F] flex items-center justify-center shrink-0 mt-0.5">1</span>
+<p class="text-[13px] leading-relaxed text-[#3C4650]">最近家里感觉她说话的方式有些变化，需要做哪些检查来确认一下？</p>
+</div>
+<div class="flex gap-2.5">
+<span class="w-5 h-5 rounded-full bg-[#E6F4EF] text-[11px] font-semibold text-[#10695F] flex items-center justify-center shrink-0 mt-0.5">2</span>
+<p class="text-[13px] leading-relaxed text-[#3C4650]">她本人没觉得不舒服，这种情况需要现在就来医院，还是先观察一段时间？</p>
+</div>
+<div class="flex gap-2.5">
+<span class="w-5 h-5 rounded-full bg-[#E6F4EF] text-[11px] font-semibold text-[#10695F] flex items-center justify-center shrink-0 mt-0.5">3</span>
+<p class="text-[13px] leading-relaxed text-[#3C4650]">平时吃的药里，有没有可能影响说话或记事情？</p>
+</div>
+<div class="flex gap-2.5">
+<span class="w-5 h-5 rounded-full bg-[#E6F4EF] text-[11px] font-semibold text-[#10695F] flex items-center justify-center shrink-0 mt-0.5">4</span>
+<p class="text-[13px] leading-relaxed text-[#3C4650]">在家里我们可以做点什么帮她？有哪些情况需要马上再来？</p>
+</div>
+<div class="flex gap-2.5">
+<span class="w-5 h-5 rounded-full bg-[#E6F4EF] text-[11px] font-semibold text-[#10695F] flex items-center justify-center shrink-0 mt-0.5">5</span>
+<p class="text-[13px] leading-relaxed text-[#3C4650]">她平时睡不好、有几天心情低落，这些会不会也和说话变化有关？</p>
+</div>
+</div>
+<p class="mt-3 text-[11px] leading-relaxed text-[#A0A6AE]">问题清单内容建议由医生审阅后再定稿。</p>
+</div>
+<div class="mt-3 rounded-2xl bg-white p-4 shadow-[0_2px_10px_rgba(31,41,55,0.05)]">
+<p class="text-[15px] font-semibold text-[#1F2937]">去看医生之前，先跟她说一声</p>
+<p class="mt-1.5 text-[13px] leading-relaxed text-[#6B7280]">
+          说是「一起去做个常规体检，顺便问问医生怎么保养」，比说「去看看脑子」更容易让她愿意去。
+        </p>
+</div>
+</div>
+<div class="shrink-0 border-t border-[#E3E6EA] bg-white">
+<button class="w-full px-4 py-2.5 flex items-center justify-center gap-1.5 text-[11px] text-[#8A9099]" onclick="toggleDisclaimer()">
+<iconify-icon class="text-[13px]" icon="solar:info-circle-linear"></iconify-icon>
+<span>本工具只做记录和变化提示，不提供诊断。</span>
+<span class="text-[#0F8A7E]" id="discMore">展开说明</span>
+</button>
+<div class="hidden px-4 pb-3" id="disclaimerFull">
+<p class="text-[11px] leading-relaxed text-[#6B7280]">
+          就诊摘要只把已有的记录和家属备注整理成材料，不含任何结论、不给分数，也不能代替医生判断。
+          挂什么科、要问什么，建议以医生当面意见为准。文中提到的科室和问题清单仅供参考。
+        </p>
+</div>
+</div>
+<button class="absolute right-0 top-1/2 z-30 -translate-y-1/2 rounded-l-lg bg-[#1F2937]/55 py-3 pl-1.5 pr-1 text-white" onclick="openStateSheet()">
+<iconify-icon class="text-[15px]" icon="solar:tuning-square-2-linear"></iconify-icon>
+</button>
+<div class="hidden absolute inset-0 z-40" id="stateSheet">
+<div class="absolute inset-0 bg-[#1F2937]/40" onclick="closeStateSheet()"></div>
+<div class="absolute bottom-0 left-0 right-0 rounded-t-2xl bg-white p-5">
+<p class="text-[15px] font-semibold text-[#1F2937]">页面状态演示（原型用）</p>
+<div class="mt-3 flex flex-wrap gap-2" id="stateChips"></div>
+</div>
+</div>
+<div class="pointer-events-none absolute left-1/2 bottom-[86px] z-50 hidden -translate-x-1/2 whitespace-nowrap rounded-full bg-[#1F2937]/90 px-4 py-2 text-[13px] text-white" id="toast"></div>
+</div>
+<script>
+    var toastTimer = null;
+    function toast(msg) {
+      var t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.remove('hidden');
+      if (toastTimer) { clearTimeout(toastTimer); }
+      toastTimer = setTimeout(function () { t.classList.add('hidden'); }, 2000);
+    }
+
+    function toggleDisclaimer() {
+      var box = document.getElementById('disclaimerFull');
+      var more = document.getElementById('discMore');
+      if (box.classList.contains('hidden')) { box.classList.remove('hidden'); more.textContent = '收起'; }
+      else { box.classList.add('hidden'); more.textContent = '展开说明'; }
+    }
+
+    var STATE_LIST = [
+      { k: 'ready', label: '正常（数据够用）' },
+      { k: 'insufficient', label: '数据不足（<4 条）' }
+    ];
+    function applyState(k) {
+      document.querySelectorAll('[data-ui]').forEach(function (el) {
+        var list = (el.getAttribute('data-ui') || '').split(' ');
+        if (list.indexOf(k) >= 0) { el.classList.remove('hidden'); } else { el.classList.add('hidden'); }
+      });
+    }
+    function buildChips() {
+      var box = document.getElementById('stateChips');
+      box.innerHTML = '';
+      STATE_LIST.forEach(function (s) {
+        var b = document.createElement('button');
+        b.textContent = s.label;
+        b.className = 'rounded-full bg-[#F4F5F7] px-3.5 py-2 text-[13px] text-[#3C4650]';
+        b.onclick = function () { applyState(s.k); closeStateSheet(); };
+        box.appendChild(b);
+      });
+    }
+    function openStateSheet() { buildChips(); document.getElementById('stateSheet').classList.remove('hidden'); }
+    function closeStateSheet() { document.getElementById('stateSheet').classList.add('hidden'); }
+
+    applyState('ready');
+  </script>
+</body>
+</html>

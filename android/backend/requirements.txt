@@ -1,0 +1,21 @@
+# 家庭认知健康日记 · 服务端依赖清单
+# 依赖新增原则见 AGENTS.md 5.9：标准库或已有依赖能满足时不新增
+fastapi>=0.115,<0.116
+uvicorn[standard]>=0.34,<0.35
+pydantic>=2.10,<3
+pydantic-settings>=2.7,<3
+sqlalchemy[asyncio]>=2.0.36,<2.1
+alembic>=1.14,<2
+psycopg[binary]>=3.2,<4
+celery>=5.4,<6
+redis>=5.2,<6
+pyjwt>=2.10,<3
+argon2-cffi>=23.1,<24
+cryptography>=43,<46
+boto3>=1.35,<2
+httpx>=0.27,<0.29
+
+# 开发/测试
+pytest>=8.3,<9
+pytest-asyncio>=0.24,<0.26
+ruff>=0.8,<0.14

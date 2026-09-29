@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+
+<html class="w-full h-full overflow-hidden" lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>研究模式 · 仅研究版可见</title>
+<script src="https://modao.cc/agent-py/static/source/js/tailwindcss.js"></script>
+<script src="https://modao.cc/agent-py/static/source/js/iconify-icon.min.js"></script>
+<style>
+  html, body { font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; -webkit-tap-highlight-color: transparent; }
+  .no-sb { scrollbar-width: none; -ms-overflow-style: none; }
+  .no-sb::-webkit-scrollbar { display: none; width: 0; height: 0; }
+</style>
+</head>
+<body class="w-full h-full m-0 overflow-hidden flex items-center justify-center bg-[#DCE0E5]">
+<div class="relative w-full h-full max-w-[393px] max-h-[852px] bg-[#F4F5F7] overflow-hidden flex flex-col">
+<header class="shrink-0 flex items-center gap-1 px-3 pt-4 pb-2">
+<a class="w-11 h-11 flex items-center justify-center rounded-full text-[#4B5563] active:bg-[#E7E9EE]" href="family-overview.html">
+<iconify-icon class="text-[24px]" icon="solar:alt-arrow-left-linear"></iconify-icon>
+</a>
+<h1 class="flex-1 text-[17px] font-semibold text-[#1F2937]">研究模式</h1>
+<a class="w-11 h-11 flex items-center justify-center rounded-full text-[#4B5563] active:bg-[#E7E9EE]" href="family-privacy.html">
+<iconify-icon class="text-[22px]" icon="solar:shield-check-linear"></iconify-icon>
+</a>
+</header>
+<div class="flex-1 min-h-0 overflow-y-auto no-sb px-4 pb-4">
+<div class="rounded-2xl bg-[#EDF1F7] border border-[#DCE4EE] p-3.5 flex items-start gap-3">
+<iconify-icon class="mt-0.5 text-[20px] text-[#3E5F82] shrink-0" icon="solar:notebook-bookmark-linear"></iconify-icon>
+<p class="text-[12px] leading-relaxed text-[#3E5F82]">
+          这一页只在研究版里可见，默认关闭，普通用户看不到。里面的内容和日常使用完全分开，不会出现在家人的界面上。
+        </p>
+</div>
+<div class="mt-3 rounded-2xl bg-white p-4 shadow-[0_2px_10px_rgba(31,41,55,0.05)]">
+<div class="flex items-center justify-between">
+<p class="text-[15px] font-semibold text-[#1F2937]">研究知情同意</p>
+<span class="rounded-full bg-[#E6F4EF] px-2.5 py-1 text-[11px] font-medium text-[#10695F]">已签署 <svg class="inline-block -mt-0.5" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+</div>
+<div class="mt-3 space-y-2.5">
+<div class="flex items-center justify-between">
+<span class="text-[13px] text-[#6B7280]">受试者编号</span>
+<span class="text-[13px] font-medium tracking-wide text-[#1F2937]">S-0007</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-[13px] text-[#6B7280]">签署日期</span>
+<span class="text-[13px] font-medium text-[#1F2937]">2026-09-18</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-[13px] text-[#6B7280]">研究负责人</span>
+<span class="text-[13px] font-medium text-[#1F2937]">李医生 · 神经内科</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-[13px] text-[#6B7280]">数据用途</span>
+<span class="text-[13px] font-medium text-[#1F2937]">说话方式研究（已去标识）</span>
+</div>
+</div>
+<div class="mt-3 flex gap-2">
+<button class="flex-1 h-10 rounded-xl bg-[#F4F5F7] text-[13px] font-medium text-[#3C4650]" onclick="toast('正在打开研究知情同意书全文')">查看同意书</button>
+<button class="flex-1 h-10 rounded-xl bg-[#F4F5F7] text-[13px] font-medium text-[#8A4209]" onclick="askQuit()">退出研究</button>
+</div>
+</div>
+<div class="mt-3 rounded-2xl bg-white p-4 shadow-[0_2px_10px_rgba(31,41,55,0.05)]">
+<p class="text-[15px] font-semibold text-[#1F2937]">临床量表录入</p>
+<p class="mt-1 text-[12px] text-[#8A9099]">仅由受过培训的评估人填写，不向本人和家属展示</p>
+<div class="mt-3 space-y-2.5">
+<div>
+<label class="text-[12px] text-[#6B7280]">量表</label>
+<select class="mt-1.5 w-full h-11 rounded-xl bg-[#F7F8FA] border border-[#E7E9EE] px-3 text-[13px] text-[#3C4650] outline-none" id="scaleSel">
+<option>MMSE（简易精神状态检查）</option>
+<option>MoCA（蒙特利尔认知评估）</option>
+<option>CDR（临床痴呆评定量表）</option>
+</select>
+</div>
+<div class="flex gap-3">
+<div class="flex-1">
+<label class="text-[12px] text-[#6B7280]">分数</label>
+<input class="mt-1.5 w-full h-11 rounded-xl bg-[#F7F8FA] border border-[#E7E9EE] px-3 text-[13px] text-[#3C4650] outline-none focus:border-[#0F8A7E]" id="scoreInput" placeholder="请输入" type="number"/>
+</div>
+<div class="flex-1">
+<label class="text-[12px] text-[#6B7280]">评估日期</label>
+<input class="mt-1.5 w-full h-11 rounded-xl bg-[#F7F8FA] border border-[#E7E9EE] px-3 text-[13px] text-[#3C4650] outline-none focus:border-[#0F8A7E]" id="dateInput" type="text" value="2026-09-18"/>
+</div>
+</div>
+<div>
+<label class="text-[12px] text-[#6B7280]">评估人</label>
+<input class="mt-1.5 w-full h-11 rounded-xl bg-[#F7F8FA] border border-[#E7E9EE] px-3 text-[13px] text-[#3C4650] outline-none focus:border-[#0F8A7E]" id="raterInput" type="text" value="李医生"/>
+</div>
+</div>
+<button class="mt-3 h-11 w-full rounded-2xl bg-[#0F8A7E] text-[14px] font-medium text-white active:bg-[#0B6B62]" onclick="saveScale()">保存</button>
+<div class="mt-2 hidden text-[12px] text-[#0F8A7E]" id="scaleSaved">已保存这条量表记录</div>
+<div class="mt-3 rounded-xl bg-[#F7F8FA] px-3.5 py-3">
+<p class="text-[12px] font-medium text-[#4B5563]">已有的量表记录</p>
+<div class="mt-2 space-y-1.5">
+<div class="flex items-center justify-between text-[12px] text-[#6B7280]">
+<span>2026-09-18 · MMSE</span>
+<span>已录入 · 李医生</span>
+</div>
+<div class="flex items-center justify-between text-[12px] text-[#6B7280]">
+<span>2026-09-18 · MoCA</span>
+<span>已录入 · 李医生</span>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-3 rounded-2xl bg-white p-4 shadow-[0_2px_10px_rgba(31,41,55,0.05)]">
+<div class="flex items-center justify-between">
+<p class="text-[15px] font-semibold text-[#1F2937]">结构化任务</p>
+<span class="text-[12px] text-[#8A9099]">本周</span>
+</div>
+<div class="mt-3 space-y-2.5">
+<div class="rounded-xl bg-[#F7F8FA] px-3.5 py-3">
+<div class="flex items-center justify-between">
+<p class="text-[13px] font-medium text-[#3C4650]">图片描述 60s</p>
+<span class="rounded-full bg-[#E6F4EF] px-2.5 py-1 text-[11px] font-medium text-[#10695F]">本周已完成 <svg class="inline-block -mt-0.5" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+</div>
+<p class="mt-1.5 text-[12px] text-[#8A9099]">看一张图片，说 60 秒。本周录了 2 次。</p>
+</div>
+<div class="rounded-xl bg-[#F7F8FA] px-3.5 py-3">
+<div class="flex items-center justify-between">
+<p class="text-[13px] font-medium text-[#3C4650]">语义流畅性 60s</p>
+<span class="rounded-full bg-[#FFF4E4] px-2.5 py-1 text-[11px] font-medium text-[#9A4B0A]">本周待完成</span>
+</div>
+<p class="mt-1.5 text-[12px] text-[#8A9099]">在一分钟内尽量多说不同类别的词。本周还差 1 次。</p>
+<a class="mt-2 inline-flex h-9 px-4 rounded-full bg-white border border-[#E7E9EE] text-[12px] font-medium text-[#0F8A7E] items-center" href="elder-record.html">去叮嘱本人完成</a>
+</div>
+<div class="rounded-xl bg-[#F7F8FA] px-3.5 py-3 opacity-70">
+<div class="flex items-center justify-between">
+<p class="text-[13px] font-medium text-[#3C4650]">复述故事 90s</p>
+<span class="rounded-full bg-[#EEF0F3] px-2.5 py-1 text-[11px] text-[#6B7280]">下周开始</span>
+</div>
+<p class="mt-1.5 text-[12px] text-[#8A9099]">听一段短故事，再讲一遍。</p>
+</div>
+</div>
+</div>
+<div class="mt-3 rounded-2xl bg-white p-4 shadow-[0_2px_10px_rgba(31,41,55,0.05)]">
+<p class="text-[15px] font-semibold text-[#1F2937]">依从性统计</p>
+<p class="mt-1 text-[12px] text-[#8A9099]">近 30 天 · 用于研究记录，不向本人展示</p>
+<div class="mt-3 rounded-xl bg-[#F7F8FA] px-3.5 py-3">
+<div class="flex items-center justify-between">
+<span class="text-[13px] text-[#6B7280]">计划记录天数</span>
+<span class="text-[13px] font-medium text-[#1F2937]">30 天</span>
+</div>
+<div class="mt-2 flex items-center justify-between">
+<span class="text-[13px] text-[#6B7280]">实际记录天数</span>
+<span class="text-[13px] font-medium text-[#1F2937]">26 天</span>
+</div>
+<div class="mt-2 flex items-center justify-between">
+<span class="text-[13px] text-[#6B7280]">依从率</span>
+<span class="text-[13px] font-medium text-[#1F2937]">87%</span>
+</div>
+<div class="mt-2.5 h-1.5 rounded-full bg-[#EEF0F3] overflow-hidden">
+<div class="h-full w-[87%] rounded-full bg-[#3E5F82]"></div>
+</div>
+</div>
+<div class="mt-3 rounded-xl bg-[#F7F8FA] px-3.5 py-3">
+<div class="flex items-center justify-between">
+<span class="text-[13px] text-[#6B7280]">本人自录 / 家属代录</span>
+<span class="text-[13px] font-medium text-[#1F2937]">21 / 5</span>
+</div>
+<p class="mt-1.5 text-[12px] leading-relaxed text-[#8A9099]">
+            家属代录占比 19%，分析时会单独列出，可以按需要剔除这部分样本。
+          </p>
+</div>
+<div class="mt-3 space-y-2">
+<div class="flex items-center justify-between rounded-xl bg-[#F7F8FA] px-3.5 py-2.5">
+<span class="text-[12px] text-[#6B7280]">平均单次时长</span>
+<span class="text-[12px] font-medium text-[#1F2937]">1 分 34 秒</span>
+</div>
+<div class="flex items-center justify-between rounded-xl bg-[#F7F8FA] px-3.5 py-2.5">
+<span class="text-[12px] text-[#6B7280]">平均记录时段</span>
+<span class="text-[12px] font-medium text-[#1F2937]">19:10 – 20:30</span>
+</div>
+<div class="flex items-center justify-between rounded-xl bg-[#F7F8FA] px-3.5 py-2.5">
+<span class="text-[12px] text-[#6B7280]">连续未记录最长</span>
+<span class="text-[12px] font-medium text-[#1F2937]">2 天</span>
+</div>
+</div>
+<button class="mt-3 h-11 w-full rounded-2xl bg-[#F4F5F7] text-[14px] font-medium text-[#3C4650] active:bg-[#ECEFF3]" onclick="toast('已生成研究用依从性报表（CSV）')">导出依从性报表</button>
+</div>
+<div class="mt-3 rounded-2xl bg-white p-4 shadow-[0_2px_10px_rgba(31,41,55,0.05)]">
+<p class="text-[15px] font-semibold text-[#1F2937]">研究相关提醒</p>
+<ul class="mt-2 space-y-2">
+<li class="flex gap-2.5">
+<iconify-icon class="mt-[3px] text-[15px] text-[#3E5F82] shrink-0" icon="solar:round-alt-arrow-right-linear"></iconify-icon>
+<span class="text-[12px] leading-relaxed text-[#4B5563]">量表分数只用于研究记录，不进入家属界面，也不作为日常提示的依据。</span>
+</li>
+<li class="flex gap-2.5">
+<iconify-icon class="mt-[3px] text-[15px] text-[#3E5F82] shrink-0" icon="solar:round-alt-arrow-right-linear"></iconify-icon>
+<span class="text-[12px] leading-relaxed text-[#4B5563]">结构化任务与日常录音分开统计，导出数据里会标明来源。</span>
+</li>
+<li class="flex gap-2.5">
+<iconify-icon class="mt-[3px] text-[15px] text-[#3E5F82] shrink-0" icon="solar:round-alt-arrow-right-linear"></iconify-icon>
+<span class="text-[12px] leading-relaxed text-[#4B5563]">研究模式下的内容同样不出现任何结论性判断，界面也不使用红色系。</span>
+</li>
+</ul>
+</div>
+</div>
+<div class="shrink-0 border-t border-[#E3E6EA] bg-white">
+<p class="px-4 py-2.5 text-center text-[11px] text-[#8A9099]">研究模式 · 仅研究版可见，普通用户默认关闭</p>
+</div>
+<div class="hidden absolute inset-0 z-40" id="quitSheet">
+<div class="absolute inset-0 bg-[#1F2937]/40" onclick="closeQuit()"></div>
+<div class="absolute bottom-0 left-0 right-0 rounded-t-2xl bg-white p-5">
+<p class="text-[15px] font-semibold text-[#1F2937]">退出研究？</p>
+<p class="mt-1.5 text-[13px] leading-relaxed text-[#6B7280]">退出后不再收集结构化任务和量表数据，已经去标识化上传的数据会按研究方案处理，详情可问研究负责人。</p>
+<div class="mt-4 flex gap-3">
+<button class="flex-1 h-11 rounded-2xl bg-[#F4F5F7] text-[14px] font-medium text-[#3C4650]" onclick="closeQuit()">继续参加</button>
+<button class="flex-1 h-11 rounded-2xl bg-[#E07A1F] text-[14px] font-medium text-white" onclick="confirmQuit()">确认退出</button>
+</div>
+</div>
+</div>
+<div class="pointer-events-none absolute left-1/2 bottom-[86px] z-50 hidden -translate-x-1/2 whitespace-nowrap rounded-full bg-[#1F2937]/90 px-4 py-2 text-[13px] text-white" id="toast"></div>
+</div>
+<script>
+    var toastTimer = null;
+    function toast(msg) {
+      var t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.remove('hidden');
+      if (toastTimer) { clearTimeout(toastTimer); }
+      toastTimer = setTimeout(function () { t.classList.add('hidden'); }, 2000);
+    }
+
+    function saveScale() {
+      var score = document.getElementById('scoreInput').value.trim();
+      var date = document.getElementById('dateInput').value.trim();
+      var rater = document.getElementById('raterInput').value.trim();
+      if (!score) { toast('请先填写量表分数'); return; }
+      if (!date) { toast('请填写评估日期'); return; }
+      if (!rater) { toast('请填写评估人'); return; }
+      document.getElementById('scaleSaved').textContent = '已保存：' + date + ' · ' + rater + ' 录入';
+      document.getElementById('scaleSaved').classList.remove('hidden');
+      toast('量表记录已保存');
+    }
+
+    function askQuit() { document.getElementById('quitSheet').classList.remove('hidden'); }
+    function closeQuit() { document.getElementById('quitSheet').classList.add('hidden'); }
+    function confirmQuit() { closeQuit(); toast('已退出研究模式'); }
+  </script>
+</body>
+</html>

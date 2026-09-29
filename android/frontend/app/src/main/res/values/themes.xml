@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+      启动主题：白 + 绿，浅色。
+      产品不提供深色模式 —— 见 docs/frontend/原型设计说明书.md 4.1（白 + 绿是整体基调）。
+      真正的界面配色全部由 Compose 的 CognitiveDiaryTheme 控制，这里只负责窗口底色，
+      避免冷启动时闪一下系统默认色。
+    -->
+    <style name="Theme.CognitiveDiary" parent="@android:style/Theme.Material.Light.NoActionBar">
+        <item name="android:windowBackground">@color/bg_page</item>
+        <item name="android:statusBarColor">@color/bg_page</item>
+        <item name="android:navigationBarColor">@color/bg_page</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:colorAccent">@color/brand_primary</item>
+    </style>
+</resources>

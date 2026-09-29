@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+
+<html class="w-full h-full overflow-hidden" lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>认知健康日记 · 启动页</title>
+<script src="https://modao.cc/agent-py/static/source/js/tailwindcss.js"></script>
+<script src="https://modao.cc/agent-py/static/source/js/iconify-icon.min.js"></script>
+<style>
+  html, body { font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; -webkit-tap-highlight-color: transparent; }
+  .no-sb { scrollbar-width: none; -ms-overflow-style: none; }
+  .no-sb::-webkit-scrollbar { display: none; width: 0; height: 0; }
+  @keyframes floatWave { 0%, 100% { transform: scaleY(0.45); } 50% { transform: scaleY(1); } }
+  .fwave { animation: floatWave 1.6s ease-in-out infinite; transform-origin: center; }
+</style>
+</head>
+<body class="w-full h-full m-0 overflow-hidden flex items-center justify-center bg-[#DCE0E5]">
+<div class="relative w-full h-full max-w-[393px] max-h-[852px] bg-gradient-to-b from-[#FCFAF7] via-[#F6F8F6] to-[#EBF3F0] overflow-hidden flex flex-col">
+<div class="flex-1 min-h-0 overflow-y-auto no-sb px-6 flex flex-col">
+<div class="pt-14 flex flex-col items-center shrink-0">
+<div class="relative w-[104px] h-[104px] rounded-full bg-gradient-to-br from-[#13A091] to-[#0B6B62] flex items-center justify-center shadow-[0_14px_34px_rgba(11,107,98,0.28)]">
+<div class="flex items-end gap-[5px] h-[42px]">
+<span class="fwave w-[5px] h-[22px] rounded-full bg-white/90"></span>
+<span class="fwave w-[5px] h-[40px] rounded-full bg-white" style="animation-delay:.15s"></span>
+<span class="fwave w-[5px] h-[30px] rounded-full bg-white/90" style="animation-delay:.3s"></span>
+<span class="fwave w-[5px] h-[42px] rounded-full bg-white" style="animation-delay:.45s"></span>
+<span class="fwave w-[5px] h-[18px] rounded-full bg-white/90" style="animation-delay:.6s"></span>
+</div>
+</div>
+<h1 class="mt-6 text-[26px] font-semibold tracking-[0.02em] text-[#1F2937]">认知健康日记</h1>
+<p class="mt-2 text-[18px] text-[#5B6470]">给家里人留个声音记录</p>
+<p class="mt-1.5 text-[15px] text-[#8A9099]">每天说几句，家里人放心，也留个念想</p>
+</div>
+<div class="mt-7 space-y-3 shrink-0">
+<a class="h-[60px] rounded-2xl bg-[#0F8A7E] flex items-center justify-center gap-2.5 text-[20px] font-semibold text-white shadow-[0_8px_22px_rgba(15,138,126,0.26)] active:bg-[#0B6B62]" href="elder-record.html">
+<iconify-icon class="text-[26px]" icon="solar:microphone-3-linear"></iconify-icon>
+          我是老人，开始录音
+        </a>
+<a class="h-[60px] rounded-2xl bg-white border border-[#D9DEE5] flex items-center justify-center gap-2.5 text-[20px] font-medium text-[#2C3742] active:bg-[#F1F3F6]" href="family-overview.html">
+<iconify-icon class="text-[26px] text-[#0F8A7E]" icon="solar:users-group-rounded-linear"></iconify-icon>
+          我是家属，查看记录
+        </a>
+</div>
+<a class="mt-4 shrink-0 flex items-center justify-between gap-3 rounded-2xl bg-[#FFF6E9] border border-[#F3E2C6] px-4 py-3.5 active:bg-[#FBEEDA]" href="onboarding-intro.html">
+<span class="w-9 h-9 rounded-full bg-[#FBE2BE] flex items-center justify-center shrink-0">
+<iconify-icon class="text-[20px] text-[#B06A12]" icon="solar:document-text-linear"></iconify-icon>
+</span>
+<span class="flex-1">
+<span class="block text-[15px] font-medium text-[#7A4A0C]">第一次使用？先看 1 分钟说明</span>
+<span class="mt-0.5 block text-[13px] text-[#9A7538]">能做什么、不能做什么，还有知情同意</span>
+</span>
+<iconify-icon class="text-[20px] text-[#C08A3C]" icon="solar:alt-arrow-right-linear"></iconify-icon>
+</a>
+<div class="mt-auto pt-8 pb-6 shrink-0">
+<p class="text-center text-[14px] leading-relaxed text-[#96A0AA]">
+          本工具不提供诊断，也不能代替医生
+        </p>
+<p class="mt-1 text-center text-[12px] text-[#B3BAC2]">数据只保存在你自己的账号里，只有你邀请的家人才看得到</p>
+</div>
+</div>
+</div>
+</body>
+</html>

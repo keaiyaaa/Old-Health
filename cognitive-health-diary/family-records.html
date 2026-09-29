@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+
+<html class="w-full h-full overflow-hidden" lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>记录列表 · 家属端</title>
+<script src="https://modao.cc/agent-py/static/source/js/tailwindcss.js"></script>
+<script src="https://modao.cc/agent-py/static/source/js/iconify-icon.min.js"></script>
+<style>
+  html, body { font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; -webkit-tap-highlight-color: transparent; }
+  .no-sb { scrollbar-width: none; -ms-overflow-style: none; }
+  .no-sb::-webkit-scrollbar { display: none; width: 0; height: 0; }
+</style>
+</head>
+<body class="w-full h-full m-0 overflow-hidden flex items-center justify-center bg-[#DCE0E5]">
+<div class="relative w-full h-full max-w-[393px] max-h-[852px] bg-[#F4F5F7] overflow-hidden flex flex-col">
+<header class="shrink-0 flex items-center gap-1 px-3 pt-4 pb-2">
+<a class="w-11 h-11 flex items-center justify-center rounded-full text-[#4B5563] active:bg-[#E7E9EE]" href="family-overview.html">
+<iconify-icon class="text-[24px]" icon="solar:alt-arrow-left-linear"></iconify-icon>
+</a>
+<h1 class="flex-1 text-[17px] font-semibold text-[#1F2937]">记录列表</h1>
+<a class="w-11 h-11 flex items-center justify-center rounded-full text-[#4B5563] active:bg-[#E7E9EE]" href="family-topics.html">
+<iconify-icon class="text-[22px]" icon="solar:chat-line-linear"></iconify-icon>
+</a>
+<a class="w-11 h-11 flex items-center justify-center rounded-full text-[#4B5563] active:bg-[#E7E9EE]" href="family-privacy.html">
+<iconify-icon class="text-[22px]" icon="solar:shield-check-linear"></iconify-icon>
+</a>
+</header>
+<div class="flex-1 min-h-0 overflow-y-auto no-sb px-4 pb-4">
+<div class="flex gap-2" id="filterBar">
+<button class="h-9 px-4 rounded-full bg-[#0F8A7E] text-[13px] font-medium text-white" id="f-all" onclick="setFilter('all')">全部</button>
+<button class="h-9 px-4 rounded-full bg-white text-[13px] font-medium text-[#4B5563]" id="f-self" onclick="setFilter('self')">老人自录</button>
+<button class="h-9 px-4 rounded-full bg-white text-[13px] font-medium text-[#4B5563]" id="f-proxy" onclick="setFilter('proxy')">家属代录</button>
+</div>
+<div data-ui="normal">
+<p class="mt-4 px-1 text-[12px] font-medium text-[#8A9099]">今天 · 9月27日</p>
+<div class="mt-2 rounded-2xl bg-white overflow-hidden shadow-[0_2px_10px_rgba(31,41,55,0.05)]">
+<div class="rec flex items-center gap-3 px-4 py-3.5 border-b border-[#F0F2F5]" data-role="self">
+<a class="flex-1 flex items-center gap-3 min-w-0" href="family-record-detail.html">
+<span class="w-10 h-10 rounded-xl bg-[#E6F4EF] flex items-center justify-center shrink-0">
+<iconify-icon class="text-[22px] text-[#0F8A7E]" icon="solar:play-circle-linear"></iconify-icon>
+</span>
+<span class="min-w-0">
+<span class="block text-[14px] font-medium text-[#1F2937]">08:12 · 自由讲述</span>
+<span class="mt-1 flex items-center gap-2 text-[11px] text-[#8A9099]">
+<span>时长 1分20秒</span>
+<span class="rounded-full bg-[#F4F5F7] px-2 py-0.5 text-[#6B7280]">老人自录</span>
+<span class="rounded-full bg-[#FFF4E4] px-2 py-0.5 text-[#9A4B0A]">有备注</span>
+</span>
+</span>
+</a>
+<button class="w-9 h-9 rounded-full flex items-center justify-center text-[#A0A6AE] active:bg-[#F4F5F7]" onclick="askDelete('今天 08:12 这条')">
+<iconify-icon class="text-[20px]" icon="solar:trash-bin-trash-linear"></iconify-icon>
+</button>
+</div>
+<p class="px-4 py-2.5 text-[12px] text-[#8A9099]">今天已经录过一段了，很好。</p>
+</div>
+<p class="mt-4 px-1 text-[12px] font-medium text-[#8A9099]">昨天 · 9月26日</p>
+<div class="mt-2 rounded-2xl bg-white overflow-hidden shadow-[0_2px_10px_rgba(31,41,55,0.05)]">
+<div class="rec flex items-center gap-3 px-4 py-3.5 border-b border-[#F0F2F5]" data-role="self">
+<a class="flex-1 flex items-center gap-3 min-w-0" href="family-record-detail.html">
+<span class="w-10 h-10 rounded-xl bg-[#E6F4EF] flex items-center justify-center shrink-0">
+<iconify-icon class="text-[22px] text-[#0F8A7E]" icon="solar:play-circle-linear"></iconify-icon>
+</span>
+<span class="min-w-0">
+<span class="block text-[14px] font-medium text-[#1F2937]">19:26 · 自由讲述</span>
+<span class="mt-1 flex items-center gap-2 text-[11px] text-[#8A9099]">
+<span>时长 2分05秒</span>
+<span class="rounded-full bg-[#F4F5F7] px-2 py-0.5 text-[#6B7280]">老人自录</span>
+</span>
+</span>
+</a>
+<button class="w-9 h-9 rounded-full flex items-center justify-center text-[#A0A6AE] active:bg-[#F4F5F7]" onclick="askDelete('昨天 19:26 这条')">
+<iconify-icon class="text-[20px]" icon="solar:trash-bin-trash-linear"></iconify-icon>
+</button>
+</div>
+<div class="rec flex items-center gap-3 px-4 py-3.5" data-role="self">
+<a class="flex-1 flex items-center gap-3 min-w-0" href="family-record-detail.html">
+<span class="w-10 h-10 rounded-xl bg-[#E6F4EF] flex items-center justify-center shrink-0">
+<iconify-icon class="text-[22px] text-[#0F8A7E]" icon="solar:play-circle-linear"></iconify-icon>
+</span>
+<span class="min-w-0">
+<span class="block text-[14px] font-medium text-[#1F2937]">09:40 · 看图说话</span>
+<span class="mt-1 flex items-center gap-2 text-[11px] text-[#8A9099]">
+<span>时长 55秒</span>
+<span class="rounded-full bg-[#F4F5F7] px-2 py-0.5 text-[#6B7280]">老人自录</span>
+</span>
+</span>
+</a>
+<button class="w-9 h-9 rounded-full flex items-center justify-center text-[#A0A6AE] active:bg-[#F4F5F7]" onclick="askDelete('昨天 09:40 这条')">
+<iconify-icon class="text-[20px]" icon="solar:trash-bin-trash-linear"></iconify-icon>
+</button>
+</div>
+</div>
+<p class="mt-4 px-1 text-[12px] font-medium text-[#8A9099]">9月25日 星期五</p>
+<div class="mt-2 rounded-2xl bg-white overflow-hidden shadow-[0_2px_10px_rgba(31,41,55,0.05)]">
+<div class="rec flex items-center gap-3 px-4 py-3.5 border-b border-[#F0F2F5]" data-role="proxy">
+<a class="flex-1 flex items-center gap-3 min-w-0" href="family-record-detail.html">
+<span class="w-10 h-10 rounded-xl bg-[#EDF1F7] flex items-center justify-center shrink-0">
+<iconify-icon class="text-[22px] text-[#4B6B8A]" icon="solar:play-circle-linear"></iconify-icon>
+</span>
+<span class="min-w-0">
+<span class="block text-[14px] font-medium text-[#1F2937]">20:11 · 自由讲述</span>
+<span class="mt-1 flex items-center gap-2 text-[11px] text-[#8A9099]">
+<span>时长 1分42秒</span>
+<span class="rounded-full bg-[#E8EEF6] px-2 py-0.5 text-[#3E5F82]">家属代录</span>
+<span class="rounded-full bg-[#FFF4E4] px-2 py-0.5 text-[#9A4B0A]">有备注</span>
+</span>
+</span>
+</a>
+<button class="w-9 h-9 rounded-full flex items-center justify-center text-[#A0A6AE] active:bg-[#F4F5F7]" onclick="askDelete('9月25日 20:11 这条')">
+<iconify-icon class="text-[20px]" icon="solar:trash-bin-trash-linear"></iconify-icon>
+</button>
+</div>
+<div class="rec flex items-center gap-3 px-4 py-3.5" data-role="self">
+<a class="flex-1 flex items-center gap-3 min-w-0" href="family-record-detail.html">
+<span class="w-10 h-10 rounded-xl bg-[#E6F4EF] flex items-center justify-center shrink-0">
+<iconify-icon class="text-[22px] text-[#0F8A7E]" icon="solar:play-circle-linear"></iconify-icon>
+</span>
+<span class="min-w-0">
+<span class="block text-[14px] font-medium text-[#1F2937]">08:03 · 自由讲述</span>
+<span class="mt-1 flex items-center gap-2 text-[11px] text-[#8A9099]">
+<span>时长 48秒</span>
+<span class="rounded-full bg-[#F4F5F7] px-2 py-0.5 text-[#6B7280]">老人自录</span>
+</span>
+</span>
+</a>
+<button class="w-9 h-9 rounded-full flex items-center justify-center text-[#A0A6AE] active:bg-[#F4F5F7]" onclick="askDelete('9月25日 08:03 这条')">
+<iconify-icon class="text-[20px]" icon="solar:trash-bin-trash-linear"></iconify-icon>
+</button>
+</div>
+</div>
+<p class="mt-4 px-1 text-[12px] font-medium text-[#8A9099]">9月24日 星期四</p>
+<div class="mt-2 rounded-2xl bg-white overflow-hidden shadow-[0_2px_10px_rgba(31,41,55,0.05)]">
+<div class="rec flex items-center gap-3 px-4 py-3.5 border-b border-[#F0F2F5]" data-role="self">
+<a class="flex-1 flex items-center gap-3 min-w-0" href="family-record-detail.html">
+<span class="w-10 h-10 rounded-xl bg-[#E6F4EF] flex items-center justify-center shrink-0">
+<iconify-icon class="text-[22px] text-[#0F8A7E]" icon="solar:play-circle-linear"></iconify-icon>
+</span>
+<span class="min-w-0">
+<span class="block text-[14px] font-medium text-[#1F2937]">19:52 · 说一说什么叫高兴</span>
+<span class="mt-1 flex items-center gap-2 text-[11px] text-[#8A9099]">
+<span>时长 2分18秒</span>
+<span class="rounded-full bg-[#F4F5F7] px-2 py-0.5 text-[#6B7280]">老人自录</span>
+</span>
+</span>
+</a>
+<button class="w-9 h-9 rounded-full flex items-center justify-center text-[#A0A6AE] active:bg-[#F4F5F7]" onclick="askDelete('9月24日 19:52 这条')">
+<iconify-icon class="text-[20px]" icon="solar:trash-bin-trash-linear"></iconify-icon>
+</button>
+</div>
+<div class="rec flex items-center gap-3 px-4 py-3.5" data-role="proxy">
+<a class="flex-1 flex items-center gap-3 min-w-0" href="family-record-detail.html">
+<span class="w-10 h-10 rounded-xl bg-[#EDF1F7] flex items-center justify-center shrink-0">
+<iconify-icon class="text-[22px] text-[#4B6B8A]" icon="solar:play-circle-linear"></iconify-icon>
+</span>
+<span class="min-w-0">
+<span class="block text-[14px] font-medium text-[#1F2937]">10:15 · 自由讲述</span>
+<span class="mt-1 flex items-center gap-2 text-[11px] text-[#8A9099]">
+<span>时长 1分10秒</span>
+<span class="rounded-full bg-[#E8EEF6] px-2 py-0.5 text-[#3E5F82]">家属代录</span>
+</span>
+</span>
+</a>
+<button class="w-9 h-9 rounded-full flex items-center justify-center text-[#A0A6AE] active:bg-[#F4F5F7]" onclick="askDelete('9月24日 10:15 这条')">
+<iconify-icon class="text-[20px]" icon="solar:trash-bin-trash-linear"></iconify-icon>
+</button>
+</div>
+</div>
+<div class="mt-4 rounded-2xl bg-white px-4 py-3 flex items-center gap-2">
+<iconify-icon class="text-[18px] text-[#8A9099]" icon="solar:info-circle-linear"></iconify-icon>
+<p class="text-[12px] leading-relaxed text-[#6B7280]">家属代录的记录会一直标着来源，看报告的时候能分得清。</p>
+</div>
+</div>
+<div class="hidden" data-ui="empty">
+<div class="mt-16 flex flex-col items-center">
+<span class="w-[92px] h-[92px] rounded-full bg-white flex items-center justify-center">
+<iconify-icon class="text-[42px] text-[#B7BDC6]" icon="solar:microphone-3-linear"></iconify-icon>
+</span>
+<p class="mt-5 text-[16px] font-semibold text-[#1F2937]">还没有内容</p>
+<p class="mt-2 text-[13px] leading-relaxed text-center text-[#8A9099]">老人录一段，或者你帮他录一段，这里就会出现记录。</p>
+<a class="mt-6 h-11 px-6 rounded-2xl bg-[#0F8A7E] text-white text-[14px] font-medium flex items-center" href="elder-record.html">去录一段</a>
+</div>
+</div>
+<div class="hidden" data-ui="offline">
+<div class="mt-4 rounded-2xl bg-[#FFF6E9] border border-[#F3E2C6] p-4 flex items-start gap-3">
+<iconify-icon class="mt-0.5 text-[22px] text-[#C4832C] shrink-0" icon="solar:cloud-cross-linear"></iconify-icon>
+<div class="flex-1">
+<p class="text-[14px] font-medium text-[#7A4A0C]">网络不太好，先看看已同步的记录</p>
+<p class="mt-1 text-[12px] leading-relaxed text-[#9A7538]">下面只有已经同步到云端的那几条，手机里还没传上去的等网络好了再显示。</p>
+</div>
+</div>
+<div class="mt-3 rounded-2xl bg-white overflow-hidden">
+<div class="flex items-center gap-3 px-4 py-3.5 border-b border-[#F0F2F5]">
+<span class="w-10 h-10 rounded-xl bg-[#F1F3F6] flex items-center justify-center shrink-0">
+<iconify-icon class="text-[22px] text-[#8A9099]" icon="solar:play-circle-linear"></iconify-icon>
+</span>
+<span class="min-w-0">
+<span class="block text-[14px] font-medium text-[#1F2937]">昨天 19:26 · 自由讲述</span>
+<span class="mt-1 block text-[11px] text-[#8A9099]">时长 2分05秒 · 已同步</span>
+</span>
+</div>
+<div class="flex items-center gap-3 px-4 py-3.5">
+<span class="w-10 h-10 rounded-xl bg-[#F1F3F6] flex items-center justify-center shrink-0">
+<iconify-icon class="text-[22px] text-[#8A9099]" icon="solar:play-circle-linear"></iconify-icon>
+</span>
+<span class="min-w-0">
+<span class="block text-[14px] font-medium text-[#1F2937]">9月25日 20:11 · 自由讲述</span>
+<span class="mt-1 block text-[11px] text-[#8A9099]">时长 1分42秒 · 家属代录 · 已同步</span>
+</span>
+</div>
+</div>
+<button class="mt-3 h-11 w-full rounded-2xl bg-white border border-[#E0E4EA] text-[14px] font-medium text-[#0F8A7E]" onclick="toast('正在重试连接…')">重新连接试试</button>
+</div>
+</div>
+<div class="shrink-0 border-t border-[#E3E6EA] bg-white">
+<button class="w-full px-4 py-2.5 flex items-center justify-center gap-1.5 text-[11px] text-[#8A9099]" onclick="toggleDisclaimer()">
+<iconify-icon class="text-[13px]" icon="solar:info-circle-linear"></iconify-icon>
+<span>本工具只做记录和变化提示，不提供诊断。</span>
+<span class="text-[#0F8A7E]" id="discMore">展开说明</span>
+</button>
+<div class="hidden px-4 pb-3" id="disclaimerFull">
+<p class="text-[11px] leading-relaxed text-[#6B7280]">
+          记录里的文字结果只是把本人这段时间的说话方式和她自己以前做比较，不给分数、不跟别人比，也不能说明任何身体或大脑的状况。
+          录音默认保存 24 个月，你可以随时删除单条记录，或在「数据与隐私」里清空全部记录。
+        </p>
+</div>
+</div>
+<div class="hidden absolute inset-0 z-40" id="delSheet">
+<div class="absolute inset-0 bg-[#1F2937]/40" onclick="closeDel()"></div>
+<div class="absolute bottom-0 left-0 right-0 rounded-t-2xl bg-white p-5">
+<p class="text-[15px] font-semibold text-[#1F2937]">删掉这条记录？</p>
+<p class="mt-1.5 text-[13px] leading-relaxed text-[#6B7280]" id="delText">删掉之后，录音和这段的文字结果都会一起清掉，不能恢复。</p>
+<div class="mt-4 flex gap-3">
+<button class="flex-1 h-11 rounded-2xl bg-[#F4F5F7] text-[14px] font-medium text-[#3C4650]" onclick="closeDel()">先不删</button>
+<button class="flex-1 h-11 rounded-2xl bg-[#E07A1F] text-[14px] font-medium text-white" onclick="confirmDel()">确认删除</button>
+</div>
+</div>
+</div>
+<button class="absolute right-0 top-1/2 z-30 -translate-y-1/2 rounded-l-lg bg-[#1F2937]/55 py-3 pl-1.5 pr-1 text-white" onclick="openStateSheet()">
+<iconify-icon class="text-[15px]" icon="solar:tuning-square-2-linear"></iconify-icon>
+</button>
+<div class="hidden absolute inset-0 z-40" id="stateSheet">
+<div class="absolute inset-0 bg-[#1F2937]/40" onclick="closeStateSheet()"></div>
+<div class="absolute bottom-0 left-0 right-0 rounded-t-2xl bg-white p-5">
+<p class="text-[15px] font-semibold text-[#1F2937]">页面状态演示（原型用）</p>
+<div class="mt-3 flex flex-wrap gap-2" id="stateChips"></div>
+</div>
+</div>
+<div class="pointer-events-none absolute left-1/2 bottom-[86px] z-50 hidden -translate-x-1/2 whitespace-nowrap rounded-full bg-[#1F2937]/90 px-4 py-2 text-[13px] text-white" id="toast"></div>
+</div>
+<script>
+    var toastTimer = null;
+    function toast(msg) {
+      var t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.remove('hidden');
+      if (toastTimer) { clearTimeout(toastTimer); }
+      toastTimer = setTimeout(function () { t.classList.add('hidden'); }, 2000);
+    }
+
+    function toggleDisclaimer() {
+      var box = document.getElementById('disclaimerFull');
+      var more = document.getElementById('discMore');
+      if (box.classList.contains('hidden')) { box.classList.remove('hidden'); more.textContent = '收起'; }
+      else { box.classList.add('hidden'); more.textContent = '展开说明'; }
+    }
+
+    var filter = 'all';
+    function setFilter(k) {
+      filter = k;
+      var ids = { all: 'f-all', self: 'f-self', proxy: 'f-proxy' };
+      Object.keys(ids).forEach(function (key) {
+        var b = document.getElementById(ids[key]);
+        if (key === k) { b.className = 'h-9 px-4 rounded-full bg-[#0F8A7E] text-[13px] font-medium text-white'; }
+        else { b.className = 'h-9 px-4 rounded-full bg-white text-[13px] font-medium text-[#4B5563]'; }
+      });
+      document.querySelectorAll('.rec').forEach(function (row) {
+        var role = row.getAttribute('data-role');
+        if (k === 'all' || k === role) { row.classList.remove('hidden'); }
+        else { row.classList.add('hidden'); }
+      });
+    }
+
+    var pendingDelete = null;
+    function askDelete(label) {
+      pendingDelete = label;
+      document.getElementById('delText').textContent = label + '删掉之后，录音和这段的文字结果都会一起清掉，不能恢复。';
+      document.getElementById('delSheet').classList.remove('hidden');
+    }
+    function closeDel() { document.getElementById('delSheet').classList.add('hidden'); }
+    function confirmDel() {
+      document.getElementById('delSheet').classList.add('hidden');
+      toast('已经删掉了这条记录');
+    }
+
+    var STATE_LIST = [
+      { k: 'normal', label: '正常' },
+      { k: 'empty', label: '空状态' },
+      { k: 'offline', label: '断网' }
+    ];
+    function applyState(k) {
+      document.querySelectorAll('[data-ui]').forEach(function (el) {
+        var list = (el.getAttribute('data-ui') || '').split(' ');
+        if (list.indexOf(k) >= 0) { el.classList.remove('hidden'); } else { el.classList.add('hidden'); }
+      });
+      var bar = document.getElementById('filterBar');
+      if (k === 'empty' || k === 'offline') { bar.classList.add('hidden'); } else { bar.classList.remove('hidden'); }
+    }
+    function buildChips() {
+      var box = document.getElementById('stateChips');
+      box.innerHTML = '';
+      STATE_LIST.forEach(function (s) {
+        var b = document.createElement('button');
+        b.textContent = s.label;
+        b.className = 'rounded-full bg-[#F4F5F7] px-3.5 py-2 text-[13px] text-[#3C4650]';
+        b.onclick = function () { applyState(s.k); closeStateSheet(); };
+        box.appendChild(b);
+      });
+    }
+    function openStateSheet() { buildChips(); document.getElementById('stateSheet').classList.remove('hidden'); }
+    function closeStateSheet() { document.getElementById('stateSheet').classList.add('hidden'); }
+
+    applyState('normal');
+  </script>
+</body>
+</html>

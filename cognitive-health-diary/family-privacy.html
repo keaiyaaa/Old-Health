@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+
+<html class="w-full h-full overflow-hidden" lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>数据与隐私 · 家属端</title>
+<script src="https://modao.cc/agent-py/static/source/js/tailwindcss.js"></script>
+<script src="https://modao.cc/agent-py/static/source/js/iconify-icon.min.js"></script>
+<style>
+  html, body { font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; -webkit-tap-highlight-color: transparent; }
+  .no-sb { scrollbar-width: none; -ms-overflow-style: none; }
+  .no-sb::-webkit-scrollbar { display: none; width: 0; height: 0; }
+</style>
+</head>
+<body class="w-full h-full m-0 overflow-hidden flex items-center justify-center bg-[#DCE0E5]">
+<div class="relative w-full h-full max-w-[393px] max-h-[852px] bg-[#F4F5F7] overflow-hidden flex flex-col">
+<header class="shrink-0 flex items-center gap-1 px-3 pt-4 pb-2">
+<a class="w-11 h-11 flex items-center justify-center rounded-full text-[#4B5563] active:bg-[#E7E9EE]" href="family-overview.html">
+<iconify-icon class="text-[24px]" icon="solar:alt-arrow-left-linear"></iconify-icon>
+</a>
+<h1 class="flex-1 text-[17px] font-semibold text-[#1F2937]">数据与隐私</h1>
+<a class="w-11 h-11 flex items-center justify-center rounded-full text-[#4B5563] active:bg-[#E7E9EE]" href="family-research.html">
+<iconify-icon class="text-[22px]" icon="solar:notebook-bookmark-linear"></iconify-icon>
+</a>
+</header>
+<div class="flex-1 min-h-0 overflow-y-auto no-sb px-4 pb-4">
+<div class="rounded-2xl bg-white p-4 shadow-[0_2px_10px_rgba(31,41,55,0.05)]">
+<p class="text-[15px] font-semibold text-[#1F2937]">同步状态</p>
+<div class="mt-3 space-y-2.5">
+<div class="flex items-center justify-between">
+<span class="text-[13px] text-[#6B7280]">最近同步</span>
+<span class="text-[13px] font-medium text-[#1F2937]">2 分钟前</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-[13px] text-[#6B7280]">待上传</span>
+<span class="text-[13px] font-medium text-[#1F2937]">0 条</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-[13px] text-[#6B7280]">本地缓存</span>
+<span class="text-[13px] font-medium text-[#1F2937]">18.4 MB</span>
+</div>
+</div>
+<button class="mt-3 h-11 w-full rounded-2xl bg-[#EDF4F2] text-[14px] font-medium text-[#0B6B62] active:bg-[#E1EDEA]" onclick="doSync()">立即同步</button>
+<div class="mt-2 flex items-center gap-2" id="syncRow">
+<span class="text-[12px] text-[#8A9099]">上次同步只用了 3 秒</span>
+</div>
+<div class="mt-2 hidden items-center gap-2" id="syncLoading">
+<iconify-icon class="text-[16px] animate-spin text-[#0F8A7E]" icon="solar:refresh-circle-linear"></iconify-icon>
+<span class="text-[12px] text-[#0F8A7E]">正在加载…</span>
+</div>
+</div>
+<div data-ui="normal">
+<div class="mt-3 rounded-2xl bg-white p-4 shadow-[0_2px_10px_rgba(31,41,55,0.05)]">
+<p class="text-[15px] font-semibold text-[#1F2937]">同意状态</p>
+<div class="mt-3 space-y-2">
+<div class="flex items-center justify-between rounded-xl bg-[#F7F8FA] px-3.5 py-3">
+<div>
+<p class="text-[13px] text-[#3C4650]">用户协议</p>
+<p class="mt-0.5 text-[11px] text-[#A0A6AE]">2026-09-20 已同意 · 版本 v2.2</p>
+</div>
+<div class="flex gap-2">
+<button class="h-8 px-3 rounded-full bg-white border border-[#E7E9EE] text-[12px] text-[#3C4650]" onclick="toast('正在打开用户协议全文')">查看</button>
+<button class="h-8 px-3 rounded-full bg-white border border-[#E7E9EE] text-[12px] text-[#6B7280]" onclick="askWithdraw('用户协议')">撤回</button>
+</div>
+</div>
+<div class="flex items-center justify-between rounded-xl bg-[#F7F8FA] px-3.5 py-3">
+<div>
+<p class="text-[13px] text-[#3C4650]">隐私政策</p>
+<p class="mt-0.5 text-[11px] text-[#A0A6AE]">2026-09-20 已同意 · 版本 v1.4</p>
+</div>
+<div class="flex gap-2">
+<button class="h-8 px-3 rounded-full bg-white border border-[#E7E9EE] text-[12px] text-[#3C4650]" onclick="toast('正在打开隐私政策全文')">查看</button>
+<button class="h-8 px-3 rounded-full bg-white border border-[#E7E9EE] text-[12px] text-[#6B7280]" onclick="askWithdraw('隐私政策')">撤回</button>
+</div>
+</div>
+<div class="flex items-center justify-between rounded-xl bg-[#F7F8FA] px-3.5 py-3">
+<div>
+<p class="text-[13px] text-[#3C4650]">敏感个人信息授权（语音）</p>
+<p class="mt-0.5 text-[11px] text-[#A0A6AE]">2026-09-20 单独同意 · 用途见说明</p>
+</div>
+<div class="flex gap-2">
+<a class="h-8 px-3 rounded-full bg-white border border-[#E7E9EE] text-[12px] text-[#3C4650] flex items-center" href="onboarding-consent.html">查看</a>
+<button class="h-8 px-3 rounded-full bg-white border border-[#E7E9EE] text-[12px] text-[#6B7280]" onclick="askWithdraw('敏感个人信息授权')">撤回</button>
+</div>
+</div>
+</div>
+<p class="mt-2 text-[11px] leading-relaxed text-[#A0A6AE]">撤回后，我们不会再上传和分析新的语音；已经产生的记录会保留到你自己删除为止。</p>
+</div>
+<div class="mt-3 rounded-2xl bg-white p-4 shadow-[0_2px_10px_rgba(31,41,55,0.05)]">
+<p class="text-[15px] font-semibold text-[#1F2937]">音频保存期限</p>
+<div class="mt-3 flex items-center justify-between rounded-xl bg-[#F7F8FA] px-3.5 py-3">
+<div>
+<p class="text-[13px] text-[#3C4650]">云端保留</p>
+<p class="mt-0.5 text-[11px] text-[#A0A6AE]">到期自动清除，不再保留副本</p>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-[13px] font-medium text-[#1F2937]" id="keepText">24 个月</span>
+<button class="h-8 px-3 rounded-full bg-white border border-[#E7E9EE] text-[12px] text-[#3C4650]" onclick="openKeep()">调整</button>
+</div>
+</div>
+</div>
+<div class="mt-3 rounded-2xl bg-white p-4 shadow-[0_2px_10px_rgba(31,41,55,0.05)]">
+<p class="text-[15px] font-semibold text-[#1F2937]">我的数据</p>
+<div class="mt-3 space-y-2">
+<button class="w-full h-12 rounded-xl bg-[#F7F8FA] px-3.5 flex items-center gap-3 text-left active:bg-[#F0F2F5]" onclick="doExport()">
+<iconify-icon class="text-[20px] text-[#0F8A7E]" icon="solar:download-minimalistic-linear"></iconify-icon>
+<span class="flex-1 text-[13px] text-[#3C4650]">导出全部数据（音频 + 指标 + 备注）</span>
+<iconify-icon class="text-[18px] text-[#B7BDC6]" icon="solar:alt-arrow-right-linear"></iconify-icon>
+</button>
+<button class="w-full h-12 rounded-xl bg-[#F7F8FA] px-3.5 flex items-center gap-3 text-left active:bg-[#F0F2F5]" onclick="askClear()">
+<iconify-icon class="text-[20px] text-[#8A9099]" icon="solar:eraser-linear"></iconify-icon>
+<span class="flex-1 text-[13px] text-[#3C4650]">清空全部记录</span>
+<iconify-icon class="text-[18px] text-[#B7BDC6]" icon="solar:alt-arrow-right-linear"></iconify-icon>
+</button>
+<button class="w-full h-12 rounded-xl bg-[#FFF6E9] border border-[#F3E2C6] px-3.5 flex items-center gap-3 text-left active:bg-[#FBEEDA]" onclick="openClose()">
+<iconify-icon class="text-[20px] text-[#B45A0C]" icon="solar:user-block-linear"></iconify-icon>
+<span class="flex-1 text-[13px] text-[#8A4209]">注销账号并删除全部数据</span>
+<iconify-icon class="text-[18px] text-[#C9A87A]" icon="solar:alt-arrow-right-linear"></iconify-icon>
+</button>
+</div>
+</div>
+<div class="mt-3 rounded-2xl bg-white p-4 shadow-[0_2px_10px_rgba(31,41,55,0.05)]">
+<p class="text-[15px] font-semibold text-[#1F2937]">权限说明</p>
+<div class="mt-3 flex items-center gap-2 flex-wrap">
+<span class="rounded-full bg-[#E6F4EF] px-3 py-1.5 text-[12px] font-medium text-[#10695F]">麦克风 <svg class="inline-block -mt-0.5" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+<span class="rounded-full bg-[#E6F4EF] px-3 py-1.5 text-[12px] font-medium text-[#10695F]">通知 <svg class="inline-block -mt-0.5" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+<span class="rounded-full bg-[#E6F4EF] px-3 py-1.5 text-[12px] font-medium text-[#10695F]">网络 <svg class="inline-block -mt-0.5" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+</div>
+<div class="mt-3 rounded-xl bg-[#F7F8FA] px-3.5 py-3">
+<p class="text-[12px] leading-relaxed text-[#6B7280]">本应用不申请通讯录、定位、相册权限。</p>
+</div>
+<p class="mt-2 text-[11px] leading-relaxed text-[#A0A6AE]">麦克风只用在你主动录音的时候；不录音时不会在后台收音。</p>
+</div>
+</div>
+<div class="hidden" data-ui="offline">
+<div class="mt-3 rounded-2xl bg-[#FFF6E9] border border-[#F3E2C6] p-4 flex items-start gap-3">
+<iconify-icon class="mt-0.5 text-[22px] text-[#C4832C] shrink-0" icon="solar:cloud-cross-linear"></iconify-icon>
+<div class="flex-1">
+<p class="text-[14px] font-medium text-[#7A4A0C]">网络不太好，先看看已同步的记录</p>
+<p class="mt-1 text-[12px] leading-relaxed text-[#9A7538]">同步、导出、注销这些要先联网才能做。下面显示的是上次同步时的状态。</p>
+</div>
+</div>
+<div class="mt-3 rounded-2xl bg-white p-4">
+<div class="flex items-center justify-between">
+<span class="text-[13px] text-[#6B7280]">最近同步</span>
+<span class="text-[13px] font-medium text-[#1F2937]">离线 · 昨天 21:05</span>
+</div>
+<div class="mt-2.5 flex items-center justify-between">
+<span class="text-[13px] text-[#6B7280]">待上传</span>
+<span class="text-[13px] font-medium text-[#1F2937]">2 条</span>
+</div>
+</div>
+<button class="mt-3 h-11 w-full rounded-2xl bg-white border border-[#E0E4EA] text-[14px] font-medium text-[#0F8A7E]" onclick="toast('正在重试连接…')">重新连接试试</button>
+</div>
+</div>
+<div class="shrink-0 border-t border-[#E3E6EA] bg-white">
+<button class="w-full px-4 py-2.5 flex items-center justify-center gap-1.5 text-[11px] text-[#8A9099]" onclick="toggleDisclaimer()">
+<iconify-icon class="text-[13px]" icon="solar:info-circle-linear"></iconify-icon>
+<span>本工具只做记录和变化提示，不提供诊断。</span>
+<span class="text-[#0F8A7E]" id="discMore">展开说明</span>
+</button>
+<div class="hidden px-4 pb-3" id="disclaimerFull">
+<p class="text-[11px] leading-relaxed text-[#6B7280]">
+          录音属于敏感个人信息，我们只在你自己同意后才会上传和分析；只有你邀请的家人才看得到。
+          你可以随时删除单条记录、清空全部记录，或者注销账号。注销会彻底清除音频、文字结果和备注，且不能恢复。
+        </p>
+</div>
+</div>
+<div class="hidden absolute inset-0 z-40" id="withdrawSheet">
+<div class="absolute inset-0 bg-[#1F2937]/40" onclick="closeWithdraw()"></div>
+<div class="absolute bottom-0 left-0 right-0 rounded-t-2xl bg-white p-5">
+<p class="text-[15px] font-semibold text-[#1F2937]">撤回这项同意？</p>
+<p class="mt-1.5 text-[13px] leading-relaxed text-[#6B7280]" id="withdrawText"></p>
+<div class="mt-4 flex gap-3">
+<button class="flex-1 h-11 rounded-2xl bg-[#F4F5F7] text-[14px] font-medium text-[#3C4650]" onclick="closeWithdraw()">先不撤回</button>
+<button class="flex-1 h-11 rounded-2xl bg-[#E07A1F] text-[14px] font-medium text-white" onclick="confirmWithdraw()">确认撤回</button>
+</div>
+</div>
+</div>
+<div class="hidden absolute inset-0 z-40" id="keepSheet">
+<div class="absolute inset-0 bg-[#1F2937]/40" onclick="closeKeep()"></div>
+<div class="absolute bottom-0 left-0 right-0 rounded-t-2xl bg-white p-5">
+<p class="text-[15px] font-semibold text-[#1F2937]">云端保留多久</p>
+<p class="mt-1.5 text-[12px] leading-relaxed text-[#6B7280]">到期后音频会自动清除，只留下记录条目的时间。随时可以改。</p>
+<div class="mt-3 space-y-2" id="keepOptions"></div>
+<button class="mt-4 h-11 w-full rounded-2xl bg-[#F4F5F7] text-[14px] font-medium text-[#3C4650]" onclick="closeKeep()">取消</button>
+</div>
+</div>
+<div class="hidden absolute inset-0 z-40" id="clearSheet">
+<div class="absolute inset-0 bg-[#1F2937]/40" onclick="closeClear()"></div>
+<div class="absolute bottom-0 left-0 right-0 rounded-t-2xl bg-white p-5">
+<p class="text-[15px] font-semibold text-[#1F2937]">清空全部记录？</p>
+<p class="mt-1.5 text-[13px] leading-relaxed text-[#6B7280]">所有录音、文字结果和家属备注都会删掉，不能恢复。账号和设置会保留。</p>
+<div class="mt-4 flex gap-3">
+<button class="flex-1 h-11 rounded-2xl bg-[#F4F5F7] text-[14px] font-medium text-[#3C4650]" onclick="closeClear()">先不清</button>
+<button class="flex-1 h-11 rounded-2xl bg-[#E07A1F] text-[14px] font-medium text-white" onclick="confirmClear()">确认清空</button>
+</div>
+</div>
+</div>
+<div class="hidden absolute inset-0 z-40" id="closeSheet">
+<div class="absolute inset-0 bg-[#1F2937]/40" onclick="closeClose()"></div>
+<div class="absolute bottom-0 left-0 right-0 rounded-t-2xl bg-white p-5">
+<div class="flex items-start gap-3">
+<span class="w-10 h-10 rounded-full bg-[#FFF4E4] flex items-center justify-center shrink-0">
+<iconify-icon class="text-[22px] text-[#C4832C]" icon="solar:danger-triangle-linear"></iconify-icon>
+</span>
+<div>
+<p class="text-[15px] font-semibold text-[#1F2937]">注销账号并删除全部数据</p>
+<p class="mt-1 text-[13px] leading-relaxed text-[#6B7280]">注销后，全部录音、指标、备注、绑定关系会被彻底删除，且不能恢复。老人端也会同时退出。</p>
+</div>
+</div>
+<p class="mt-4 text-[13px] text-[#4B5563]">请输入 <span class="font-semibold text-[#8A4209]">删除</span> 两个字来确认：</p>
+<input class="mt-2 w-full h-12 rounded-2xl bg-[#F7F8FA] border border-[#E7E9EE] px-3.5 text-[14px] text-[#3C4650] outline-none focus:border-[#0F8A7E]" id="closeInput" placeholder="在这里输入：删除" type="text"/>
+<div class="mt-4 flex gap-3">
+<button class="flex-1 h-11 rounded-2xl bg-[#F4F5F7] text-[14px] font-medium text-[#3C4650]" onclick="closeClose()">先不注销</button>
+<button class="flex-1 h-11 rounded-2xl bg-[#E07A1F] text-[14px] font-medium text-white" onclick="confirmClose()">确认注销</button>
+</div>
+</div>
+</div>
+<button class="absolute right-0 top-1/2 z-30 -translate-y-1/2 rounded-l-lg bg-[#1F2937]/55 py-3 pl-1.5 pr-1 text-white" onclick="openStateSheet()">
+<iconify-icon class="text-[15px]" icon="solar:tuning-square-2-linear"></iconify-icon>
+</button>
+<div class="hidden absolute inset-0 z-40" id="stateSheet">
+<div class="absolute inset-0 bg-[#1F2937]/40" onclick="closeStateSheet()"></div>
+<div class="absolute bottom-0 left-0 right-0 rounded-t-2xl bg-white p-5">
+<p class="text-[15px] font-semibold text-[#1F2937]">页面状态演示（原型用）</p>
+<div class="mt-3 flex flex-wrap gap-2" id="stateChips"></div>
+</div>
+</div>
+<div class="pointer-events-none absolute left-1/2 bottom-[86px] z-50 hidden -translate-x-1/2 whitespace-nowrap rounded-full bg-[#1F2937]/90 px-4 py-2 text-[13px] text-white" id="toast"></div>
+</div>
+<script>
+    var toastTimer = null;
+    function toast(msg) {
+      var t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.remove('hidden');
+      if (toastTimer) { clearTimeout(toastTimer); }
+      toastTimer = setTimeout(function () { t.classList.add('hidden'); }, 2200);
+    }
+
+    function doSync() {
+      var row = document.getElementById('syncRow');
+      var load = document.getElementById('syncLoading');
+      load.classList.remove('hidden');
+      load.classList.add('flex');
+      row.classList.add('hidden');
+      setTimeout(function () {
+        load.classList.add('hidden');
+        load.classList.remove('flex');
+        row.classList.remove('hidden');
+        row.querySelector('span').textContent = '刚刚同步完成，0 条待上传';
+        toast('同步完成，没有待上传的记录');
+      }, 1400);
+    }
+
+    function doExport() {
+      toast('正在准备导出文件（音频 + 指标 + 备注）…');
+      setTimeout(function () { toast('导出文件已生成，可在手机的下载里找到'); }, 1600);
+    }
+
+    var withdrawTarget = '';
+    function askWithdraw(name) {
+      withdrawTarget = name;
+      document.getElementById('withdrawText').textContent =
+        name + '撤回后，我们不会再上传和分析新的语音。已经产生的记录会保留到你自己删除为止，随时可以重新打开。';
+      document.getElementById('withdrawSheet').classList.remove('hidden');
+    }
+    function closeWithdraw() { document.getElementById('withdrawSheet').classList.add('hidden'); }
+    function confirmWithdraw() {
+      closeWithdraw();
+      toast('已撤回「' + withdrawTarget + '」');
+    }
+
+    function askClear() { document.getElementById('clearSheet').classList.remove('hidden'); }
+    function closeClear() { document.getElementById('clearSheet').classList.add('hidden'); }
+    function confirmClear() { closeClear(); toast('已清空全部记录（原型演示，未真正删除）'); }
+
+    function openClose() { document.getElementById('closeSheet').classList.remove('hidden'); }
+    function closeClose() { document.getElementById('closeSheet').classList.add('hidden'); }
+    function confirmClose() {
+      var v = document.getElementById('closeInput').value.trim();
+      if (v !== '删除') { toast('请先输入「删除」两个字再确认'); return; }
+      closeClose();
+      toast('账号已注销，全部数据已彻底删除，不能恢复');
+    }
+
+    var keepOptions = ['3 个月', '12 个月', '24 个月', '60 个月', '一直保留'];
+    function openKeep() {
+      var box = document.getElementById('keepOptions');
+      box.innerHTML = '';
+      var cur = document.getElementById('keepText').textContent;
+      keepOptions.forEach(function (v) {
+        var b = document.createElement('button');
+        var on = v === cur;
+        b.className = on
+          ? 'w-full h-12 rounded-xl bg-[#E6F4EF] px-3.5 flex items-center justify-between text-[13px] font-medium text-[#10695F]'
+          : 'w-full h-12 rounded-xl bg-[#F7F8FA] px-3.5 flex items-center justify-between text-[13px] text-[#3C4650]';
+        b.innerHTML = '<span>' + v + '</span>' + (on ? '<span class="text-[11px] text-[#10695F]">现在用的</span>' : '<span class="text-[11px] text-[#A0A6AE]">改成这个</span>');
+        b.onclick = function () { setKeep(v); };
+        box.appendChild(b);
+      });
+      document.getElementById('keepSheet').classList.remove('hidden');
+    }
+    function setKeep(v) {
+      document.getElementById('keepText').textContent = v;
+      closeKeep();
+      toast('云端保留已改成 ' + v);
+    }
+    function closeKeep() { document.getElementById('keepSheet').classList.add('hidden'); }
+
+    function toggleDisclaimer() {
+      var box = document.getElementById('disclaimerFull');
+      var more = document.getElementById('discMore');
+      if (box.classList.contains('hidden')) { box.classList.remove('hidden'); more.textContent = '收起'; }
+      else { box.classList.add('hidden'); more.textContent = '展开说明'; }
+    }
+
+    var STATE_LIST = [
+      { k: 'normal', label: '正常' },
+      { k: 'offline', label: '断网' }
+    ];
+    function applyState(k) {
+      document.querySelectorAll('[data-ui]').forEach(function (el) {
+        var list = (el.getAttribute('data-ui') || '').split(' ');
+        if (list.indexOf(k) >= 0) { el.classList.remove('hidden'); } else { el.classList.add('hidden'); }
+      });
+    }
+    function buildChips() {
+      var box = document.getElementById('stateChips');
+      box.innerHTML = '';
+      STATE_LIST.forEach(function (s) {
+        var b = document.createElement('button');
+        b.textContent = s.label;
+        b.className = 'rounded-full bg-[#F4F5F7] px-3.5 py-2 text-[13px] text-[#3C4650]';
+        b.onclick = function () { applyState(s.k); closeStateSheet(); };
+        box.appendChild(b);
+      });
+    }
+    function openStateSheet() { buildChips(); document.getElementById('stateSheet').classList.remove('hidden'); }
+    function closeStateSheet() { document.getElementById('stateSheet').classList.add('hidden'); }
+
+    applyState('normal');
+  </script>
+</body>
+</html>

@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+
+<html class="w-full h-full overflow-hidden" lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>总览 · 家属端</title>
+<script src="https://modao.cc/agent-py/static/source/js/tailwindcss.js"></script>
+<script src="https://modao.cc/agent-py/static/source/js/iconify-icon.min.js"></script>
+<script src="https://modao.cc/agent-py/static/source/js/echarts.min.js"></script>
+<style>
+  html, body { font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; -webkit-tap-highlight-color: transparent; }
+  .no-sb { scrollbar-width: none; -ms-overflow-style: none; }
+  .no-sb::-webkit-scrollbar { display: none; width: 0; height: 0; }
+</style>
+</head>
+<body class="w-full h-full m-0 overflow-hidden flex items-center justify-center bg-[#DCE0E5]">
+<div class="relative w-full h-full max-w-[393px] max-h-[852px] bg-[#F4F5F7] overflow-hidden flex flex-col">
+<header class="shrink-0 px-4 pt-4 pb-2">
+<div class="flex items-center justify-between">
+<div>
+<h1 class="text-[21px] font-semibold text-[#1F2937]">总览</h1>
+<p class="mt-0.5 text-[12px] text-[#8A9099]">今天 · 9月27日 星期日</p>
+</div>
+<div class="flex items-center gap-1">
+<a class="w-11 h-11 rounded-full flex items-center justify-center text-[#4B5563] active:bg-[#E7E9EE]" href="family-records.html">
+<iconify-icon class="text-[22px]" icon="solar:list-check-linear"></iconify-icon>
+</a>
+<a class="w-11 h-11 rounded-full flex items-center justify-center text-[#4B5563] active:bg-[#E7E9EE]" href="family-privacy.html">
+<iconify-icon class="text-[22px]" icon="solar:shield-check-linear"></iconify-icon>
+</a>
+</div>
+</div>
+</header>
+<div class="flex-1 min-h-0 overflow-y-auto no-sb px-4 pb-4">
+<div data-ui="normal">
+<div class="rounded-2xl bg-white p-4 shadow-[0_2px_10px_rgba(31,41,55,0.05)]">
+<div class="flex items-center gap-3">
+<span class="w-12 h-12 rounded-full bg-[#E6F4EF] flex items-center justify-center shrink-0">
+<iconify-icon class="text-[25px] text-[#0F8A7E]" icon="solar:user-heart-linear"></iconify-icon>
+</span>
+<div class="flex-1 min-w-0">
+<p class="text-[16px] font-semibold text-[#1F2937]">王秀兰 <span class="ml-1 text-[12px] font-normal text-[#8A9099]">妈妈 · 68岁</span></p>
+<p class="mt-0.5 text-[12px] text-[#8A9099]">已连续记录 8 天 · 最近一次 昨天 19:26</p>
+</div>
+<button class="h-8 px-3 rounded-full bg-[#F4F5F7] text-[12px] text-[#4B5563] flex items-center gap-1 shrink-0" onclick="openPersonSheet()">
+              切换
+              <iconify-icon class="text-[14px]" icon="solar:alt-arrow-down-linear"></iconify-icon>
+</button>
+</div>
+</div>
+<div class="mt-3 rounded-2xl bg-[#FDF0E0] overflow-hidden flex">
+<div class="w-1 bg-[#E07A1F] shrink-0"></div>
+<div class="flex-1 p-4">
+<div class="flex items-center gap-2">
+<iconify-icon class="text-[19px] text-[#B45A0C]" icon="solar:bell-bing-linear"></iconify-icon>
+<p class="text-[15px] font-semibold text-[#8A4209]">最近有些不一样，先看看</p>
+<span class="ml-auto rounded-full bg-[#F6D6AE] px-2 py-0.5 text-[11px] font-medium text-[#8A4209]">留意一下</span>
+</div>
+<p class="mt-2 text-[13px] leading-relaxed text-[#8A4209]">
+              说话速度比她自己平时慢了一点，用到的词也比平时少一些，已经连着 5 天这样。
+            </p>
+<div class="mt-3 rounded-xl bg-white/75 p-3">
+<p class="text-[13px] font-medium text-[#8A4209]">先别往坏处想</p>
+<p class="mt-1.5 text-[13px] leading-relaxed text-[#9A5A1E]">
+                感冒、没睡好、心情不好、这几天聊得少、换了新环境，都可能让说话变成这样。先观察两周，把这段时间可能的原因记下来，再看要不要去医院看看。这几天不用催她多说。
+              </p>
+</div>
+<div class="mt-3 flex gap-2">
+<a class="h-9 px-4 rounded-full bg-[#E07A1F] text-white text-[13px] font-medium flex items-center" href="family-trends.html">看看详情</a>
+<button class="h-9 px-4 rounded-full bg-white text-[#8A4209] text-[13px] font-medium flex items-center" onclick="toast('已记下：这段时间可能和感冒有关')">记一下原因</button>
+</div>
+</div>
+</div>
+<div class="mt-3 rounded-2xl bg-white p-4 shadow-[0_2px_10px_rgba(31,41,55,0.05)]">
+<div class="flex items-center justify-between">
+<p class="text-[14px] font-semibold text-[#1F2937]">说话的四个方面</p>
+<a class="text-[12px] text-[#0F8A7E] flex items-center gap-0.5" href="family-trends.html">
+              趋势详情
+              <iconify-icon class="text-[14px]" icon="solar:alt-arrow-right-linear"></iconify-icon>
+</a>
+</div>
+<p class="mt-1 text-[11px] text-[#A0A6AE]">都只跟她自己以前比，不跟别人比，也不给分数</p>
+<div class="mt-3 grid grid-cols-2 gap-3">
+<div class="rounded-2xl bg-[#FAFBFC] border border-[#EDF0F3] p-3">
+<p class="text-[13px] text-[#4B5563]">说话速度</p>
+<div class="mt-2 w-[78px] h-[22px]" id="spark1"></div>
+<span class="mt-2 inline-block rounded-full bg-[#FDF0E0] px-2 py-0.5 text-[11px] font-medium text-[#9A4B0A]">比平时慢一点</span>
+</div>
+<div class="rounded-2xl bg-[#FAFBFC] border border-[#EDF0F3] p-3">
+<p class="text-[13px] text-[#4B5563]">说话流畅度</p>
+<div class="mt-2 w-[78px] h-[22px]" id="spark2"></div>
+<span class="mt-2 inline-block rounded-full bg-[#E6F4EF] px-2 py-0.5 text-[11px] font-medium text-[#10695F]">跟平时差不多</span>
+</div>
+<div class="rounded-2xl bg-[#FAFBFC] border border-[#EDF0F3] p-3">
+<p class="text-[13px] text-[#4B5563]">用词丰富程度</p>
+<div class="mt-2 w-[78px] h-[22px]" id="spark3"></div>
+<span class="mt-2 inline-block rounded-full bg-[#FDF0E0] px-2 py-0.5 text-[11px] font-medium text-[#9A4B0A]">比平时少一点</span>
+</div>
+<div class="rounded-2xl bg-[#FAFBFC] border border-[#EDF0F3] p-3">
+<p class="text-[13px] text-[#4B5563]">说话的连贯性</p>
+<div class="mt-2 w-[78px] h-[22px]" id="spark4"></div>
+<span class="mt-2 inline-block rounded-full bg-[#E6F4EF] px-2 py-0.5 text-[11px] font-medium text-[#10695F]">跟平时差不多</span>
+</div>
+</div>
+</div>
+<div class="mt-3 rounded-2xl bg-white px-4 py-3 shadow-[0_2px_10px_rgba(31,41,55,0.05)]">
+<div class="flex items-center gap-3">
+<iconify-icon class="text-[19px] text-[#0F8A7E] shrink-0" icon="solar:database-linear"></iconify-icon>
+<div class="flex-1">
+<p class="text-[12px] text-[#4B5563]">这次分析用了 <span class="font-semibold">8 条</span> 有效记录 · 数据够用</p>
+<div class="mt-1.5 h-1.5 rounded-full bg-[#EEF0F3] overflow-hidden">
+<div class="h-full w-[82%] rounded-full bg-[#0F8A7E]"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div data-ui="loading">
+<div class="rounded-2xl bg-white p-4 animate-pulse">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-full bg-[#EEF0F3]"></div>
+<div class="flex-1">
+<div class="h-3.5 w-28 rounded bg-[#EEF0F3]"></div>
+<div class="mt-2 h-3 w-40 rounded bg-[#F3F5F7]"></div>
+</div>
+</div>
+</div>
+<div class="mt-3 rounded-2xl bg-white p-4 animate-pulse">
+<div class="h-3.5 w-36 rounded bg-[#EEF0F3]"></div>
+<div class="mt-3 h-3 w-full rounded bg-[#F3F5F7]"></div>
+<div class="mt-2 h-3 w-4/5 rounded bg-[#F3F5F7]"></div>
+<div class="mt-3 h-16 w-full rounded-xl bg-[#F3F5F7]"></div>
+</div>
+<div class="mt-3 rounded-2xl bg-white p-4 animate-pulse">
+<div class="grid grid-cols-2 gap-3">
+<div class="h-24 rounded-2xl bg-[#F3F5F7]"></div>
+<div class="h-24 rounded-2xl bg-[#F3F5F7]"></div>
+<div class="h-24 rounded-2xl bg-[#F3F5F7]"></div>
+<div class="h-24 rounded-2xl bg-[#F3F5F7]"></div>
+</div>
+</div>
+<p class="mt-4 text-center text-[13px] text-[#8A9099]">正在加载…</p>
+</div>
+<div data-ui="offline">
+<div class="rounded-2xl bg-[#FFF6E9] border border-[#F3E2C6] p-4 flex items-start gap-3">
+<iconify-icon class="mt-0.5 text-[22px] text-[#C4832C] shrink-0" icon="solar:cloud-cross-linear"></iconify-icon>
+<div class="flex-1">
+<p class="text-[14px] font-medium text-[#7A4A0C]">网络不太好，先看看已同步的记录</p>
+<p class="mt-1 text-[12px] leading-relaxed text-[#9A7538]">下面这些是上次同步时存下来的，等网络好点会自动更新。</p>
+</div>
+</div>
+<div class="mt-3 rounded-2xl bg-white p-4">
+<div class="flex items-center gap-3">
+<span class="w-12 h-12 rounded-full bg-[#F1F3F6] flex items-center justify-center shrink-0">
+<iconify-icon class="text-[25px] text-[#8A9099]" icon="solar:user-heart-linear"></iconify-icon>
+</span>
+<div class="flex-1">
+<p class="text-[16px] font-semibold text-[#1F2937]">王秀兰 <span class="ml-1 text-[12px] font-normal text-[#8A9099]">妈妈 · 68岁</span></p>
+<p class="mt-0.5 text-[12px] text-[#8A9099]">离线数据 · 截止 昨天 19:26</p>
+</div>
+</div>
+</div>
+<div class="mt-3 grid grid-cols-2 gap-3">
+<div class="rounded-2xl bg-white p-3.5">
+<p class="text-[13px] text-[#4B5563]">说话速度</p>
+<p class="mt-2 text-[13px] font-medium text-[#9A4B0A]">比平时慢一点</p>
+</div>
+<div class="rounded-2xl bg-white p-3.5">
+<p class="text-[13px] text-[#4B5563]">说话流畅度</p>
+<p class="mt-2 text-[13px] font-medium text-[#10695F]">跟平时差不多</p>
+</div>
+<div class="rounded-2xl bg-white p-3.5">
+<p class="text-[13px] text-[#4B5563]">用词丰富程度</p>
+<p class="mt-2 text-[13px] font-medium text-[#9A4B0A]">比平时少一点</p>
+</div>
+<div class="rounded-2xl bg-white p-3.5">
+<p class="text-[13px] text-[#4B5563]">说话的连贯性</p>
+<p class="mt-2 text-[13px] font-medium text-[#10695F]">跟平时差不多</p>
+</div>
+</div>
+<button class="mt-3 h-11 w-full rounded-2xl bg-white border border-[#E0E4EA] text-[14px] font-medium text-[#0F8A7E]" onclick="toast('正在重试连接…')">重新连接试试</button>
+</div>
+<div data-ui="insufficient">
+<div class="rounded-2xl bg-[#F1F3F6] overflow-hidden flex">
+<div class="w-1 bg-[#9CA3AF] shrink-0"></div>
+<div class="flex-1 p-4">
+<div class="flex items-center gap-2">
+<iconify-icon class="text-[19px] text-[#5B6470]" icon="solar:hourglass-line-linear"></iconify-icon>
+<p class="text-[15px] font-semibold text-[#3C4650]">记录还少，先攒一攒</p>
+</div>
+<p class="mt-2 text-[13px] leading-relaxed text-[#5B6470]">
+              有效记录还不到 4 条，现在看趋势容易看偏。这段时间先安心记录，别急着下结论。
+            </p>
+<div class="mt-3 rounded-xl bg-white/80 p-3">
+<p class="text-[13px] leading-relaxed text-[#6B7280]">
+                刚换手机、刚搬过来住、这几天身体不舒服，都会让记录少一些。等记录攒到 4 条以上，这里就会告诉你方向。
+              </p>
+</div>
+</div>
+</div>
+<div class="mt-3 rounded-2xl bg-white px-4 py-3">
+<div class="flex items-center gap-3">
+<iconify-icon class="text-[19px] text-[#C4832C] shrink-0" icon="solar:database-linear"></iconify-icon>
+<div class="flex-1">
+<p class="text-[12px] font-medium text-[#7A4A0C]">有效记录 3 条 · 还不够看趋势（需要至少 4 条）</p>
+<div class="mt-1.5 h-1.5 rounded-full bg-[#F3EAD9] overflow-hidden">
+<div class="h-full w-[30%] rounded-full bg-[#E0A24A]"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-3 grid grid-cols-2 gap-3">
+<div class="rounded-2xl bg-white p-3.5">
+<p class="text-[13px] text-[#4B5563]">说话速度</p>
+<p class="mt-2 text-[13px] text-[#A0A6AE]">记录不够，暂时看不出来</p>
+</div>
+<div class="rounded-2xl bg-white p-3.5">
+<p class="text-[13px] text-[#4B5563]">说话流畅度</p>
+<p class="mt-2 text-[13px] text-[#A0A6AE]">记录不够，暂时看不出来</p>
+</div>
+<div class="rounded-2xl bg-white p-3.5">
+<p class="text-[13px] text-[#4B5563]">用词丰富程度</p>
+<p class="mt-2 text-[13px] text-[#A0A6AE]">记录不够，暂时看不出来</p>
+</div>
+<div class="rounded-2xl bg-white p-3.5">
+<p class="text-[13px] text-[#4B5563]">说话的连贯性</p>
+<p class="mt-2 text-[13px] text-[#A0A6AE]">记录不够，暂时看不出来</p>
+</div>
+</div>
+</div>
+<div class="mt-3 rounded-2xl bg-white p-4 shadow-[0_2px_10px_rgba(31,41,55,0.05)]">
+<div class="flex items-start gap-3">
+<span class="w-10 h-10 rounded-xl bg-[#FFF4E4] flex items-center justify-center shrink-0">
+<iconify-icon class="text-[20px] text-[#D3832A]" icon="solar:bell-linear"></iconify-icon>
+</span>
+<div class="flex-1">
+<p class="text-[14px] font-semibold text-[#1F2937]">今天还没有录音</p>
+<p class="mt-1 text-[12px] leading-relaxed text-[#6B7280]">王秀兰平时晚上 7:30 会录一段。今晚 7:30 会再提醒她一次，连着没录也不会一直催。</p>
+</div>
+</div>
+<div class="mt-3 flex gap-2">
+<button class="flex-1 h-10 rounded-xl bg-[#0F8A7E] text-white text-[14px] font-medium active:bg-[#0B6B62]" onclick="toast('已提醒王秀兰，稍后她手机会响一下')">提醒她录一段</button>
+<a class="flex-1 h-10 rounded-xl bg-[#EDF4F2] text-[#0F8A7E] text-[14px] font-medium flex items-center justify-center" href="elder-record.html">帮他录</a>
+</div>
+<p class="mt-2 text-[11px] text-[#A0A6AE]">你自己录的那条会标上「家属代录」，之后看的时候能分得清。</p>
+</div>
+<div class="mt-3">
+<p class="mb-2 px-1 text-[13px] font-semibold text-[#4B5563]">接下来可以做什么</p>
+<div class="grid grid-cols-3 gap-3">
+<a class="rounded-2xl bg-white p-3.5 flex flex-col items-center gap-2 shadow-[0_2px_10px_rgba(31,41,55,0.05)] active:bg-[#F8F9FB]" href="family-topics.html">
+<iconify-icon class="text-[23px] text-[#0F8A7E]" icon="solar:chat-line-linear"></iconify-icon>
+<span class="text-[12px] text-[#4B5563]">每日话题</span>
+</a>
+<a class="rounded-2xl bg-white p-3.5 flex flex-col items-center gap-2 shadow-[0_2px_10px_rgba(31,41,55,0.05)] active:bg-[#F8F9FB]" href="family-visit-prep.html">
+<iconify-icon class="text-[23px] text-[#0F8A7E]" icon="solar:clipboard-list-linear"></iconify-icon>
+<span class="text-[12px] text-[#4B5563]">就医准备</span>
+</a>
+<button class="rounded-2xl bg-white p-3.5 flex flex-col items-center gap-2 shadow-[0_2px_10px_rgba(31,41,55,0.05)] active:bg-[#F8F9FB]" onclick="openInviteSheet()">
+<iconify-icon class="text-[23px] text-[#0F8A7E]" icon="solar:user-plus-linear"></iconify-icon>
+<span class="text-[12px] text-[#4B5563]">邀请家人</span>
+</button>
+</div>
+</div>
+</div>
+<div class="shrink-0 border-t border-[#E3E6EA] bg-white">
+<button class="w-full px-4 py-2.5 flex items-center justify-center gap-1.5 text-[11px] text-[#8A9099]" onclick="toggleDisclaimer()">
+<iconify-icon class="text-[13px]" icon="solar:info-circle-linear"></iconify-icon>
+<span>本工具只做记录和变化提示，不提供诊断。</span>
+<span class="text-[#0F8A7E]" id="discMore">展开说明</span>
+</button>
+<div class="hidden px-4 pb-3" id="disclaimerFull">
+<p class="text-[11px] leading-relaxed text-[#6B7280]">
+          这里显示的所有变化，都是把本人最近这段时间的录音，和她自己更早以前的状态做比较，不跟其他人比，也不给分数。
+          说话方式会受感冒、睡眠、心情、环境变化等很多因素影响，这里的变化提示不能说明任何身体或大脑的状况，也不能代替医生。
+          如果本人或家人觉得不放心，请到医院的神经内科、记忆门诊或老年科当面咨询。
+        </p>
+</div>
+</div>
+<button class="absolute right-0 top-1/2 z-30 -translate-y-1/2 rounded-l-lg bg-[#1F2937]/55 py-3 pl-1.5 pr-1 text-white" onclick="openStateSheet()">
+<iconify-icon class="text-[15px]" icon="solar:tuning-square-2-linear"></iconify-icon>
+</button>
+<div class="hidden absolute inset-0 z-40" id="stateSheet">
+<div class="absolute inset-0 bg-[#1F2937]/40" onclick="closeStateSheet()"></div>
+<div class="absolute bottom-0 left-0 right-0 rounded-t-2xl bg-white p-5">
+<p class="text-[15px] font-semibold text-[#1F2937]">页面状态演示（原型用）</p>
+<div class="mt-3 flex flex-wrap gap-2" id="stateChips"></div>
+<p class="mt-3 text-[12px] text-[#8A9099]">对应说明书附录 B 的页面状态。</p>
+</div>
+</div>
+<div class="hidden absolute inset-0 z-40" id="personSheet">
+<div class="absolute inset-0 bg-[#1F2937]/40" onclick="closePersonSheet()"></div>
+<div class="absolute bottom-0 left-0 right-0 rounded-t-2xl bg-white p-5">
+<p class="text-[15px] font-semibold text-[#1F2937]">切换要看的人</p>
+<div class="mt-3 space-y-2">
+<button class="w-full h-14 rounded-2xl bg-[#E6F4EF] px-4 flex items-center gap-3" onclick="closePersonSheet();toast('已切换到 王秀兰')">
+<iconify-icon class="text-[22px] text-[#0F8A7E]" icon="solar:user-heart-linear"></iconify-icon>
+<span class="text-[14px] font-medium text-[#1F2937]">王秀兰</span>
+<span class="text-[12px] text-[#6B7280]">妈妈 · 68岁</span>
+<iconify-icon class="ml-auto text-[20px] text-[#0F8A7E]" icon="solar:check-circle-linear"></iconify-icon>
+</button>
+<button class="w-full h-14 rounded-2xl bg-[#F4F5F7] px-4 flex items-center gap-3" onclick="closePersonSheet();toast('已切换到 李建国')">
+<iconify-icon class="text-[22px] text-[#6B7280]" icon="solar:user-linear"></iconify-icon>
+<span class="text-[14px] font-medium text-[#1F2937]">李建国</span>
+<span class="text-[12px] text-[#6B7280]">爸爸 · 71岁</span>
+</button>
+</div>
+</div>
+</div>
+<div class="hidden absolute inset-0 z-40" id="inviteSheet">
+<div class="absolute inset-0 bg-[#1F2937]/40" onclick="closeInviteSheet()"></div>
+<div class="absolute bottom-0 left-0 right-0 rounded-t-2xl bg-white p-5">
+<p class="text-[15px] font-semibold text-[#1F2937]">邀请家人一起看</p>
+<p class="mt-1.5 text-[12px] leading-relaxed text-[#6B7280]">被邀请的家人才看得到记录，最多再邀请 2 位。你随时可以把人移出去。</p>
+<div class="mt-4 flex items-center gap-3">
+<div class="w-[92px] h-[92px] rounded-2xl bg-[#F4F5F7] flex items-center justify-center shrink-0">
+<iconify-icon class="text-[62px] text-[#1F2937]" icon="solar:qr-code-linear"></iconify-icon>
+</div>
+<div class="flex-1">
+<p class="text-[13px] text-[#4B5563]">邀请码</p>
+<p class="mt-1 text-[20px] font-semibold tracking-[0.18em] text-[#0F8A7E]">XIU 2 4 7</p>
+<p class="mt-1 text-[11px] text-[#A0A6AE]">30 天内有效</p>
+</div>
+</div>
+<button class="mt-4 h-11 w-full rounded-2xl bg-[#0F8A7E] text-white text-[14px] font-medium active:bg-[#0B6B62]" onclick="toast('邀请链接已复制，去微信里发给她吧')">复制邀请链接</button>
+</div>
+</div>
+<div class="pointer-events-none absolute left-1/2 bottom-[86px] z-50 hidden -translate-x-1/2 whitespace-nowrap rounded-full bg-[#1F2937]/90 px-4 py-2 text-[13px] text-white" id="toast"></div>
+</div>
+<script>
+    var toastTimer = null;
+    function toast(msg) {
+      var t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.remove('hidden');
+      if (toastTimer) { clearTimeout(toastTimer); }
+      toastTimer = setTimeout(function () { t.classList.add('hidden'); }, 2000);
+    }
+
+    function toggleDisclaimer() {
+      var box = document.getElementById('disclaimerFull');
+      var more = document.getElementById('discMore');
+      if (box.classList.contains('hidden')) {
+        box.classList.remove('hidden');
+        more.textContent = '收起';
+      } else {
+        box.classList.add('hidden');
+        more.textContent = '展开说明';
+      }
+    }
+
+    function openPersonSheet() { document.getElementById('personSheet').classList.remove('hidden'); }
+    function closePersonSheet() { document.getElementById('personSheet').classList.add('hidden'); }
+    function openInviteSheet() { document.getElementById('inviteSheet').classList.remove('hidden'); }
+    function closeInviteSheet() { document.getElementById('inviteSheet').classList.add('hidden'); }
+
+    function spark(id, data, color) {
+      var el = document.getElementById(id);
+      if (!el || !window.echarts) { return; }
+      var c = echarts.init(el);
+      c.setOption({
+        grid: { left: 1, right: 1, top: 3, bottom: 3 },
+        xAxis: { type: 'category', show: false, boundaryGap: false, data: data.map(function (_, i) { return i; }) },
+        yAxis: { type: 'value', show: false, min: 'dataMin', max: 'dataMax' },
+        series: [{
+          type: 'line',
+          data: data,
+          smooth: true,
+          symbol: 'none',
+          lineStyle: { width: 2, color: color },
+          areaStyle: { color: color, opacity: 0.08 }
+        }]
+      });
+    }
+
+    function initSparks() {
+      spark('spark1', [2.2, 2.0, 2.3, 1.7, 1.2, 0.8, 0.5, 1.4, 1.6, 0.4, 0.1, 1.1, 0.3, -0.2], '#E07A1F');
+      spark('spark2', [1.9, 2.1, 1.7, 2.2, 1.8, 2.3, 2.0, 1.8, 2.1, 2.0, 1.7, 2.1, 1.9, 1.8], '#17876A');
+      spark('spark3', [2.4, 2.2, 2.1, 1.8, 1.5, 1.2, 0.9, 1.6, 1.9, 1.0, 0.7, 1.3, 0.9, 0.6], '#E07A1F');
+      spark('spark4', [2.0, 2.2, 1.8, 2.3, 2.1, 1.7, 2.2, 2.4, 2.0, 2.2, 1.8, 2.3, 2.1, 1.9], '#17876A');
+    }
+
+    var STATE_LIST = [
+      { k: 'normal', label: '正常' },
+      { k: 'loading', label: '加载中' },
+      { k: 'offline', label: '断网' },
+      { k: 'insufficient', label: '数据不足' }
+    ];
+
+    function applyState(k) {
+      document.querySelectorAll('[data-ui]').forEach(function (el) {
+        var list = (el.getAttribute('data-ui') || '').split(' ');
+        if (list.indexOf(k) >= 0) { el.classList.remove('hidden'); } else { el.classList.add('hidden'); }
+      });
+    }
+
+    function buildChips() {
+      var box = document.getElementById('stateChips');
+      box.innerHTML = '';
+      STATE_LIST.forEach(function (s) {
+        var b = document.createElement('button');
+        b.textContent = s.label;
+        b.className = 'rounded-full bg-[#F4F5F7] px-3.5 py-2 text-[13px] text-[#3C4650]';
+        b.onclick = function () { applyState(s.k); closeStateSheet(); };
+        box.appendChild(b);
+      });
+    }
+    function openStateSheet() { buildChips(); document.getElementById('stateSheet').classList.remove('hidden'); }
+    function closeStateSheet() { document.getElementById('stateSheet').classList.add('hidden'); }
+
+    applyState('normal');
+    initSparks();
+  </script>
+</body>
+</html>

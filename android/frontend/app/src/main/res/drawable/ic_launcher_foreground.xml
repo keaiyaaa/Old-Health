@@ -1,0 +1,22 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- 五根高低不同的声波柱，主绿 #17845A -->
+    <path
+        android:fillColor="#17845A"
+        android:pathData="M30,48h6v12h-6z" />
+    <path
+        android:fillColor="#17845A"
+        android:pathData="M40,40h6v28h-6z" />
+    <path
+        android:fillColor="#17845A"
+        android:pathData="M50,32h6v44h-6z" />
+    <path
+        android:fillColor="#17845A"
+        android:pathData="M60,40h6v28h-6z" />
+    <path
+        android:fillColor="#17845A"
+        android:pathData="M70,48h6v12h-6z" />
+</vector>
